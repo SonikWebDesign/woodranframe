@@ -2,6 +2,12 @@
   const $ = (selector, scope = document) => scope.querySelector(selector);
   const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
+const handleHeaderState = () => {
+  document.body.classList.toggle('scrolled', window.scrollY > 18);
+};
+handleHeaderState();
+window.addEventListener('scroll', handleHeaderState, { passive: true });
+
   const progress = $('.scroll-progress span');
   const updateProgress = () => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -553,6 +559,41 @@
       setHouseMode(button.dataset.house === 'both' ? 'both' : 'one');
     });
   });
+
+
+const navSections = ['hero','intro','houses','amenities','gallery','around','location','booking']
+  .map(id => document.getElementById(id))
+  .filter(Boolean);
+const prevSectionButton = $('#section-prev');
+const nextSectionButton = $('#section-next');
+let currentSectionIndex = 0;
+
+function updateFloatingNav() {
+  if (!navSections.length) return;
+  const threshold = window.innerHeight * 0.28;
+  let activeIndex = 0;
+  navSections.forEach((section, index) => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= threshold) activeIndex = index;
+  });
+  currentSectionIndex = activeIndex;
+  if (prevSectionButton) prevSectionButton.disabled = currentSectionIndex === 0;
+  if (nextSectionButton) nextSectionButton.disabled = currentSectionIndex === navSections.length - 1;
+}
+
+prevSectionButton?.addEventListener('click', () => {
+  if (currentSectionIndex <= 0) return;
+  navSections[currentSectionIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+nextSectionButton?.addEventListener('click', () => {
+  if (currentSectionIndex >= navSections.length - 1) return;
+  navSections[currentSectionIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+updateFloatingNav();
+window.addEventListener('scroll', updateFloatingNav, { passive: true });
+window.addEventListener('resize', updateFloatingNav);
 
   function createNonce() {
     if (window.crypto?.getRandomValues) {

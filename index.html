@@ -49,65 +49,64 @@
     <a href="#booking">Резервирай</a>
   </div>
 
+  <div class="floating-nav" aria-label="Навигация между секциите">
+    <button type="button" class="floating-arrow" id="section-prev" aria-label="Предишна секция">↑</button>
+    <button type="button" class="floating-arrow" id="section-next" aria-label="Следваща секция">↓</button>
+  </div>
+
+  <div class="floating-actions" aria-label="Бързи действия">
+    <a class="floating-fab fab-instagram" href="https://www.instagram.com/woodra.aframe/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7h-9Zm9.7 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.8A3.2 3.2 0 1 0 12 15.2 3.2 3.2 0 0 0 12 8.8Z"/></svg>
+    </a>
+    <a class="floating-fab fab-booking" href="#booking" aria-label="Към резервации">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h1.5A2.5 2.5 0 0 1 21 6.5v12a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18.5v-12A2.5 2.5 0 0 1 5.5 4H7V2Zm11.5 8h-13v8.5c0 .39.31.7.7.7h11.6c.39 0 .7-.31.7-.7V10ZM6.2 5.8a.7.7 0 0 0-.7.7V8h13V6.5a.7.7 0 0 0-.7-.7H6.2Z"/></svg>
+    </a>
+  </div>
+
   <main>
-    <section class="hero" aria-label="WOODRA A-FRAME">
-      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="hero-poster.jpg">
-        <source src="woodra-01.mp4" type="video/mp4" />
-      </video>
-      <div class="hero-shade"></div>
-      <div class="hero-glow" aria-hidden="true"></div>
+    
+<section class="hero" id="hero" aria-label="WOODRA A-FRAME">
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="hero-poster.jpg">
+    <source src="woodra-01.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-shade"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
 
-      <div class="hero-copy reveal">
-        <p class="eyebrow">BERKOVITSA · BALKAN MOUNTAINS</p>
-        <h1>Две A-frame къщи.<br /><em>Едно различно място.</em></h1>
-        <p class="hero-lead">Дърво, вода, гора и тишина. Пространство за хората, с които времето си струва.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#booking">Провери дати</a>
-          <a class="button button-ghost" href="#experience-video">
-            <span class="play-dot">▶</span> Виж мястото
-          </a>
-        </div>
-      </div>
+  <div class="hero-copy reveal">
+    <p class="eyebrow">BERKOVITSA · BALKAN MOUNTAINS</p>
+    <h1>WOODRA A-FRAME.<br /><em>Място, което се помни.</em></h1>
+    <p class="hero-lead">Две дизайнерски A-frame къщи сред гората край Берковица — с отопляем басейн, вечерни огньове, голяма тераса и усещане, че времето най-сетне спира.</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="#gallery">Разгледай WOODRA</a>
+      <a class="button button-ghost" href="#experience-video">
+        <span class="play-dot">▶</span> Виж мястото
+      </a>
+    </div>
+  </div>
 
-      <div class="hero-meta reveal">
-        <div><strong>2</strong><span>A-frame къщи</span></div>
-        <div><strong>6</strong><span>спални общо</span></div>
-        <div><strong>4</strong><span>бани общо</span></div>
-        <div><strong>1</strong><span>отопляем басейн</span></div>
-      </div>
+  <div class="hero-showcase reveal" aria-hidden="true">
+    <figure class="hero-card hero-card-main aframe-card">
+      <img src="hero-poster.jpg" alt="" fetchpriority="high" />
+    </figure>
+    <figure class="hero-card hero-card-top triangle-card">
+      <img src="exterior-close.webp" alt="" />
+    </figure>
+    <figure class="hero-card hero-card-bottom diamond-card">
+      <img src="night-exterior.webp" alt="" />
+    </figure>
+  </div>
 
-      <a class="scroll-cue" href="#intro" aria-label="Продължи надолу"><span></span>SCROLL</a>
-    </section>
+  <div class="hero-meta reveal">
+    <div><strong>2</strong><span>A-frame къщи</span></div>
+    <div><strong>6</strong><span>спални общо</span></div>
+    <div><strong>4</strong><span>бани общо</span></div>
+    <div><strong>1</strong><span>отопляем басейн</span></div>
+  </div>
 
-    <section class="quick-book" aria-label="Бърза проверка за резервация">
-      <div class="quick-book-inner">
-        <label>
-          <span>Настаняване</span>
-          <input type="date" id="quick-arrival" />
-        </label>
-        <label>
-          <span>Освобождаване</span>
-          <input type="date" id="quick-departure" />
-        </label>
-        <label>
-          <span>Гости</span>
-          <select id="quick-guests">
-            <option value="2">2 гости</option>
-            <option value="3">3 гости</option>
-            <option value="4">4 гости</option>
-            <option value="5">5 гости</option>
-            <option value="6">6 гости</option>
-            <option value="7">7 гости</option>
-            <option value="8">8 гости</option>
-            <option value="9">9 гости</option>
-            <option value="10">10 гости</option>
-            <option value="11">11+ гости</option>
-          </select>
-        </label>
-        <button type="button" class="button button-dark" id="quick-check">Провери</button>
-      </div>
-      <p class="quick-note">Минимум 2 нощувки · Една или двете къщи според броя гости</p>
-    </section>
+  <a class="scroll-cue" href="#intro" aria-label="Продължи надолу"><span></span>SCROLL</a>
+</section>
+
+    
 
     <section class="intro section" id="intro">
       <div class="section-kicker reveal">WOODRA / A-FRAME</div>
@@ -263,24 +262,29 @@
       </div>
     </section>
 
-    <section class="gallery section" id="gallery">
-      <div class="section-head reveal">
-        <div>
-          <p class="section-kicker">ГАЛЕРИЯ</p>
-          <h2>Погледнете наоколо.<br /><em>После елате.</em></h2>
-        </div>
-        <p>Натиснете върху снимка, за да я отворите на цял екран.</p>
-      </div>
+    
+<section class="gallery section" id="gallery">
+  <div class="section-head reveal">
+    <div>
+      <p class="section-kicker">ГАЛЕРИЯ</p>
+      <h2>Дневна светлина.<br />Син час.<br /><em>И вечери край гората.</em></h2>
+    </div>
+    <p>Подбрахме най-силните кадри от WOODRA — отвън, отвътре и в онези часове, в които мястото изглежда най-магично.</p>
+  </div>
 
-      <div class="gallery-grid">
-        <button class="gallery-item tall reveal" data-lightbox="aerial.webp" aria-label="Отвори снимката"><img src="aerial.webp" alt="WOODRA от високо" loading="lazy" /></button>
-        <button class="gallery-item reveal" data-lightbox="bedroom-modern.webp" aria-label="Отвори снимката"><img src="bedroom-modern.webp" alt="Модерна спалня" loading="lazy" /></button>
-        <button class="gallery-item wide reveal" data-lightbox="mountain-view.webp" aria-label="Отвори снимката"><img src="mountain-view.webp" alt="Гледка към планината" loading="lazy" /></button>
-        <button class="gallery-item reveal" data-lightbox="fruit-relax.webp" aria-label="Отвори снимката"><img src="fruit-relax.webp" alt="Плодове и кът за почивка" loading="lazy" /></button>
-        <button class="gallery-item tall reveal" data-lightbox="bathroom-wood.webp" aria-label="Отвори снимката"><img src="bathroom-wood.webp" alt="Баня с дървени детайли" loading="lazy" /></button>
-        <button class="gallery-item reveal" data-lightbox="exterior-close.webp" aria-label="Отвори снимката"><img src="exterior-close.webp" alt="Фасада на A-frame къщата" loading="lazy" /></button>
-      </div>
-    </section>
+  <div class="gallery-grid gallery-grid-rich">
+    <button class="gallery-item tall aframe reveal" data-lightbox="aerial.webp" aria-label="Отвори снимката"><img src="aerial.webp" alt="WOODRA от високо" loading="lazy" /></button>
+    <button class="gallery-item wide reveal" data-lightbox="houses-pool.webp" aria-label="Отвори снимката"><img src="houses-pool.webp" alt="Двете къщи и басейнът" loading="lazy" /></button>
+    <button class="gallery-item triangle reveal" data-lightbox="night-exterior.webp" aria-label="Отвори снимката"><img src="night-exterior.webp" alt="WOODRA през нощта" loading="lazy" /></button>
+    <button class="gallery-item reveal" data-lightbox="pool-sunset.webp" aria-label="Отвори снимката"><img src="pool-sunset.webp" alt="Басейн по залез" loading="lazy" /></button>
+    <button class="gallery-item reveal" data-lightbox="terrace.webp" aria-label="Отвори снимката"><img src="terrace.webp" alt="Тераса и шезлонги" loading="lazy" /></button>
+    <button class="gallery-item tall diamond reveal" data-lightbox="bathroom-wood.webp" aria-label="Отвори снимката"><img src="bathroom-wood.webp" alt="Баня с дървени детайли" loading="lazy" /></button>
+    <button class="gallery-item wide reveal" data-lightbox="mountain-view.webp" aria-label="Отвори снимката"><img src="mountain-view.webp" alt="Гледка към планината" loading="lazy" /></button>
+    <button class="gallery-item reveal" data-lightbox="bedroom-modern.webp" aria-label="Отвори снимката"><img src="bedroom-modern.webp" alt="Модерна спалня" loading="lazy" /></button>
+    <button class="gallery-item reveal" data-lightbox="fruit-relax.webp" aria-label="Отвори снимката"><img src="fruit-relax.webp" alt="Плодове и кът за почивка" loading="lazy" /></button>
+    <button class="gallery-item reveal" data-lightbox="pool-night.webp" aria-label="Отвори снимката"><img src="pool-night.webp" alt="Вечер край басейна" loading="lazy" /></button>
+  </div>
+</section>
 
     <section class="film-strip" aria-label="WOODRA атмосфера">
       <video autoplay muted loop playsinline preload="metadata" poster="aerial.webp">
@@ -339,29 +343,25 @@
 
     <section class="booking section" id="booking">
       <div class="booking-shell reveal">
-        <div class="booking-side">
-          <p class="section-kicker">РЕЗЕРВАЦИЯ</p>
-          <h2>Изберете дати.<br /><em>Гората ви чака.</em></h2>
-          <p>Календарът проверява свободните дати директно в Google Calendar. При резервация периодът се блокира автоматично и изпращаме потвърждение по имейл.</p>
-          <div class="booking-promise">
-            <span>✓</span><p>Свободни дати в реално време</p>
-            <span>✓</span><p>Минимум 2 нощувки</p>
-            <span>✓</span><p>Една или двете къщи</p>
-            <span>✓</span><p>Автоматичен имейл към госта и домакините</p>
-          </div>
-          <div class="booking-mini-note">
-            <span>LIVE</span>
-            <p>Заетите дни в Google Calendar автоматично изчезват от свободните дати на сайта.</p>
-          </div>
-        </div>
+        
+<div class="booking-side">
+  <p class="section-kicker">РЕЗЕРВАЦИЯ</p>
+  <h2>Изберете дати.<br /><em>Гората ви чака.</em></h2>
+  <div class="booking-promise">
+    <span>✓</span><p>Минимум 2 нощувки</p>
+    <span>✓</span><p>Една или двете къщи</p>
+    <span>✓</span><p>Автоматичен имейл към госта и домакините</p>
+    <span>✓</span><p>Бързо потвърждение на запитването</p>
+  </div>
+</div>
 
-        <div class="booking-stack">
+<div class="booking-stack">
           <div class="availability-card" id="availability-card">
             <div class="availability-top">
               <div>
                 <span class="availability-live"><i></i> LIVE AVAILABILITY</span>
                 <h3>Изберете своя престой</h3>
-                <p>Първо дата на настаняване, после дата на освобождаване.</p>
+                <p>Първо изберете настаняване, после освобождаване.</p>
               </div>
               <div class="booking-house-toggle" role="tablist" aria-label="Избор на къщи за календара">
                 <button class="active" type="button" data-booking-house="one" role="tab" aria-selected="true">
