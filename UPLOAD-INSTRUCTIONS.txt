@@ -1,0 +1,8 @@
+WOODRA A-FRAME — GitHub Pages upload
+
+1) Do NOT upload this ZIP itself. Extract it first.
+2) Upload ALL files from this folder directly into the repository root.
+3) index.html must stay in the repository root.
+4) Do not create assets/images or assets/video folders. All references are already flattened.
+5) The Google Apps Script backend is NOT included here; it already lives in Google Apps Script.
+6) GitHub Pages: Settings > Pages > Source: Deploy from a branch > main > /(root) > Save.
