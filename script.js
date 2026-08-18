@@ -111,7 +111,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
 
   const config = window.WOODRA_CONFIG || {};
-  const MIN_NIGHTS = Number(config.minNights || 2);
+  const MIN_NIGHTS = Number(config.minNights || 1);
   const SINGLE_HOUSE_MAX = Number(config.singleHouseMaxGuests || 8);
   const MONTHS_AHEAD = Number(config.availabilityMonthsAhead || 18);
 
@@ -630,7 +630,7 @@ window.addEventListener('resize', updateFloatingNav);
     status.textContent = '';
     status.className = 'form-status success';
     if (successCard) successCard.hidden = false;
-    if (successCopy) successCopy.textContent = `${data.dates || ''} · ${data.houseLabel || ''}. Изпратихме подробностите на вашия имейл.`;
+    if (successCopy) successCopy.textContent = `${data.dates || ''} · ${data.houseLabel || ''}. Проверете имейла си за стъпките за депозит.`;
     if (bookingReference) bookingReference.textContent = `№ ${data.reference || ''}`;
     form.reset();
     setHouseMode('one');
@@ -703,3 +703,6 @@ window.addEventListener('resize', updateFloatingNav);
   updateNightCount();
   loadAvailability();
 })();
+
+
+window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches && document.documentElement.classList.add("reduced-motion");
