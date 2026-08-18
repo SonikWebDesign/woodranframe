@@ -445,7 +445,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
       } else {
         updateCalendarStatus(state.selectedStart
           ? `Настаняване: ${bgDate(state.selectedStart)}. Изберете освобождаване.`
-          : 'Свободните дати са синхронизирани с Google Calendar.', 'success');
+          : 'Свободните дати са актуални.', 'success');
       }
     } catch (error) {
       state.liveAvailability = false;

@@ -4,7 +4,7 @@
   LIVE booking configuration
   --------------------------
   This site is connected to the deployed WOODRA Google Apps Script Web App.
-  The endpoint below powers live availability, Google Calendar blocking,
+  The endpoint below powers live availability and booking.
   booking confirmation and reservation emails.
 */
 window.WOODRA_CONFIG = {
