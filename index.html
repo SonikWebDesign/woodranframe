@@ -17,6 +17,34 @@
   <link rel="stylesheet" href="styles.css" />
   <script src="config.js" defer></script>
   <script src="script.js" defer></script>
+
+  <style>
+    /* v11 desktop-only polish: mobile rules are intentionally untouched */
+    @media (min-width: 1025px) {
+      .hero-booking-teaser {
+        display: none !important;
+      }
+
+      .gallery-grid-rich .gallery-item {
+        background: #07150f;
+      }
+
+      .gallery-grid-rich .gallery-item img {
+        object-fit: contain !important;
+        object-position: center center !important;
+        transform: none !important;
+      }
+
+      .gallery-grid-rich .gallery-item:hover img {
+        transform: none !important;
+      }
+
+      .cinema-card img {
+        object-fit: cover !important;
+        object-position: center 48% !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -119,7 +147,7 @@
       </div>
 
       <div class="cinema-card reveal" data-parallax-card>
-        <img src="houses-pool.webp" alt="Двете A-frame къщи WOODRA и басейнът" loading="lazy" />
+        <img src="night-exterior.webp" alt="WOODRA A-FRAME през нощта" loading="lazy" />
         <div class="cinema-caption">
           <span>WOODRA A-FRAME</span>
           <strong>Идваш за уикенд. Тръгваш с план кога се връщаш.</strong>
@@ -266,10 +294,10 @@
         <div class="interior-slider-shell reveal">
           <button class="interior-nav prev" type="button" aria-label="Предишна снимка">←</button>
           <div class="interior-slider" id="interior-slider">
-            <div class="interior-slide active"><img src="interior-bathroom-wood.jpg" alt="Баня с дървени детайли" loading="lazy" /></div>
+            <div class="interior-slide active"><img src="interior-bathroom-wood.png" alt="Баня с дървени детайли" loading="lazy" /></div>
             <div class="interior-slide"><img src="interior-bathroom-grey.jpg" alt="Баня със сива мазилка" loading="lazy" /></div>
             <div class="interior-slide"><img src="interior-stairs.png" alt="Стълбище в интериора" loading="lazy" /></div>
-            <div class="interior-slide"><img src="interior-bedroom-modern.jpg" alt="Модерна спалня" loading="lazy" /></div>
+            <div class="interior-slide"><img src="interior-bedroom-modern.png" alt="Модерна спалня" loading="lazy" /></div>
           </div>
           <button class="interior-nav next" type="button" aria-label="Следваща снимка">→</button>
           <div class="interior-dots" id="interior-dots">
