@@ -19,6 +19,17 @@
   <script src="script.js" defer></script>
 
   <style>
+    /* Houses section headline: longer copy, slightly smaller size + gold accent */
+    .houses .section-head h2.headline-tight {
+      font-size: clamp(2.4rem, 4.2vw, 4.2rem);
+      line-height: 1.15;
+    }
+
+    em.gold {
+      font-style: italic;
+      color: #cbb075;
+    }
+
     /* v11 desktop-only polish: mobile rules are intentionally untouched */
     @media (min-width: 1025px) {
       .hero-booking-teaser {
@@ -118,7 +129,7 @@
     <div class="hero-booking-teaser reveal">
       <span class="mini-kicker">CHECK AVAILABILITY</span>
       <strong>Минимум 2 нощувки.<br />Депозит = 1 нощувка.</strong>
-      <p>Избери уединен престой за двама или резервирай целия комплекс за хората, които обичаш.</p>
+      <p>Уединение за двама или пространство за всички, които обичаш — двете А-рамки се нагаждат към момента, не обратното.</p>
       <a href="#booking">Провери свободни дати ↗</a>
     </div>
   </div>
@@ -171,9 +182,9 @@
       <div class="section-head reveal">
         <div>
           <p class="section-kicker">НАСТАНЯВАНЕ</p>
-          <h2>ЕДърво, тишина и планински въздух — в едната къща или в двете. Броят на стаите се мени, усещането остава същото."</em></h2>
+          <h2 class="headline-tight">Дърво, тишина и планински въздух —<br />в едната къща <em class="gold">или в двете.</em></h2>
         </div>
-        <p>По-романтичен престой или целият комплекс — изборът е според компанията и настроението.</p>
+        <p>Броят на стаите се мени. Усещането остава същото.</p>
       </div>
 
       <div class="house-switch reveal" role="tablist" aria-label="Избор на вариант">
@@ -208,7 +219,7 @@
       <div class="mood-overlay"></div>
       <div class="mood-copy reveal">
         <span>AFTER DARK</span>
-        <p>След залез<br />WOODRA става още по-хубава.</p>
+        <p>Залезът е само началото.<br />Нощта тук има свой собствен <em class="gold">ритъм.</em></p>
       </div>
     </section>
 
@@ -250,7 +261,7 @@
           <div class="amenity-content">
             <span>04</span>
             <h3>За малките</h3>
-            <p>Пространство за игри.</p>
+            <p>Двор, трева и достатъчно място децата да тичат необезпокоявани.</p>
           </div>
         </article>
         <article class="amenity-card amenity-card-text reveal">
@@ -258,7 +269,7 @@
           <div class="amenity-content">
             <span>05</span>
             <h3>Река в двора</h3>
-            <p>Реката минава през двора и става част от целия престой.</p>
+            <p>Шумът на реката се чува от терасата — естествен фон за вечерите тук.</p>
           </div>
         </article>
         <article class="amenity-card amenity-card-text reveal">
@@ -266,7 +277,7 @@
           <div class="amenity-content">
             <span>06</span>
             <h3>Паркинг</h3>
-            <p>Удобен паркинг в рамките на имота за до 4 автомобила.</p>
+            <p>Пристигаш с колата чак до вратата — място за 4 автомобила, без излишни притеснения.</p>
           </div>
         </article>
       </div>
@@ -275,7 +286,7 @@
         <span class="breakfast-icon">☕</span>
         <div>
           <strong>Закуска по заявка</strong>
-          <p>По заявка може да добавим и закуска.</p>
+          <p>Топла закуска на терасата, докато мъглата се вдига от гората.</p>
         </div>
         <a href="#booking">Добави към престоя →</a>
       </div>
@@ -364,7 +375,7 @@
       <div class="location-copy reveal">
         <p class="section-kicker">ЛОКАЦИЯ</p>
         <h2>В края на улицата<br />започва <em>планината.</em></h2>
-        <p>Берковица, тиха улица край реката и планината на една крачка. Точно толкова просто.</p>
+        <p>Берковица, тиха улица край реката — а планината започва още на следващата крачка.</p>
         <div class="location-address">
           <span>WOODRA A-FRAME</span>
           <strong>гр. Берковица<br />ул. „Елин Пелин“ 22</strong>
@@ -389,8 +400,8 @@
     <section class="final-cta section reveal" aria-label="Финален призив за резервация">
       <div class="final-cta-card">
         <span class="section-kicker">YOUR ESCAPE</span>
-        <h2>Ако вече си се видял<br />тук — <em>резервирай.</em></h2>
-        <p>Избери едната къща или целия комплекс. Изпрати запитване и ще получиш имейл с детайли и банкова сметка за депозита.</p>
+        <h2>Представи си се вече тук —<br />остава само да <em class="gold">резервираш.</em></h2>
+        <p>Едната къща за уединение, двете — за всички, които искаш до себе си. Изпрати запитване и ще получиш имейл с всичко необходимо за резервацията.</p>
         <div class="final-cta-actions">
           <a class="button button-primary" href="#booking">Провери свободни дати</a>
           <a class="button button-ghost" href="#gallery">Разгледай още</a>
