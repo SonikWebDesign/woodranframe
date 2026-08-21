@@ -1403,3 +1403,80 @@ body.scrolled .site-header { background: rgba(5,14,10,.72); backdrop-filter: blu
     bottom: max(82px, calc(env(safe-area-inset-bottom) + 72px));
   }
 }
+
+
+/* Client feedback: two-house-first positioning + attractions cards */
+.houses .section-head > p {
+  max-width: 520px;
+}
+.house-switch button[data-house="both"].active,
+.booking-house-toggle button[data-booking-house="both"].active {
+  box-shadow: 0 8px 28px rgba(211,176,108,.14);
+}
+
+.around {
+  grid-template-columns: .72fr 1.28fr;
+  align-items: start;
+}
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.place-card {
+  position: relative;
+  min-height: 210px;
+  padding: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(211,176,108,.16);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+  transition: transform .3s ease, border-color .3s ease, background .3s ease;
+}
+.place-card::after {
+  content: "↗";
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  color: rgba(211,176,108,.55);
+  font-size: 18px;
+}
+.place-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(211,176,108,.34);
+  background: rgba(211,176,108,.045);
+}
+.place-card .place-distance {
+  display: block;
+  margin-bottom: 30px;
+  font-family: var(--serif);
+  font-size: 28px;
+  color: var(--wood-light);
+}
+.place-card strong {
+  display: block;
+  max-width: 90%;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.06;
+}
+.place-card p {
+  margin: 12px 0 0;
+  max-width: 92%;
+  color: rgba(245,238,224,.58);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+@media (max-width: 1020px) {
+  .around { grid-template-columns: 1fr; }
+  .places-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .places-grid { grid-template-columns: 1fr; gap: 10px; }
+  .place-card { min-height: 0; padding: 21px; }
+  .place-card .place-distance { margin-bottom: 20px; font-size: 24px; }
+  .place-card strong { font-size: 23px; }
+}

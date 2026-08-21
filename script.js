@@ -50,19 +50,19 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
       image: 'exterior-close.webp',
       alt: 'Една A-frame къща WOODRA',
       chip: 'ONE HOUSE',
-      eyebrow: 'ПОДХОДЯЩО ЗА ПО-МАЛКА КОМПАНИЯ',
-      title: 'Вашата собствена<br>A-frame къща.',
-      description: 'Самостоятелна къща с три спални, един разтегателен диван, две бани и механа. Достъп до общите външни пространства и удобства.',
+      eyebrow: 'ОПЦИЯ ЗА ПО-МАЛКА КОМПАНИЯ',
+      title: 'Една A-frame къща.<br>Същият WOODRA ритъм.',
+      description: 'Три спални, един разтегателен диван, две бани и механа. Вариант за по-малка компания, която иска да преживее WOODRA в по-компактен формат.',
       specs: [['3','спални'],['1','разтегателен диван'],['2','бани'],['1','механа']]
     },
     both: {
       image: 'houses-pool.webp',
       alt: 'Двете A-frame къщи WOODRA',
-      chip: 'BOTH HOUSES',
-      eyebrow: 'ЦЯЛОТО WOODRA ЗА ВАШАТА КОМПАНИЯ',
-      title: 'Двете къщи.<br>Едно общо място.',
-      description: 'Общо шест спални, два разтегателни дивана и четири бани. Двете пространства са свързани с топла връзка между механите.',
-      specs: [['6','спални'],['2','разтегателни дивана'],['4','бани'],['2','свързани пространства']]
+      chip: 'TWO HOUSES',
+      eyebrow: 'ЦЕЛИЯТ WOODRA ЗА ВАШАТА КОМПАНИЯ',
+      title: 'Целият комплекс.<br>Цялото преживяване.',
+      description: 'Шест спални, два разтегателни дивана, четири бани и две механи, свързани помежду си. Повече пространство, повече време заедно.',
+      specs: [['6','спални'],['2','разтегателни дивана'],['4','бани'],['2','механи']]
     }
   };
 
@@ -168,7 +168,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     viewMonth: startOfMonth(today),
     selectedStart: null,
     selectedEnd: null,
-    houseMode: 'one',
+    houseMode: 'both',
     house1Busy: new Set(),
     house2Busy: new Set(),
     liveAvailability: false,
@@ -633,7 +633,7 @@ window.addEventListener('resize', updateFloatingNav);
     if (successCopy) successCopy.textContent = `${data.dates || ''} · ${data.houseLabel || ''}. Проверете имейла си за стъпките за депозит.`;
     if (bookingReference) bookingReference.textContent = `№ ${data.reference || ''}`;
     form.reset();
-    setHouseMode('one');
+    setHouseMode('both');
     setSelectedRange(null, null);
     loadAvailability();
     successCard?.scrollIntoView({ behavior: 'smooth', block: 'center' });
