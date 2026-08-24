@@ -2,6 +2,26 @@
   const $ = (selector, scope = document) => scope.querySelector(selector);
   const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
+  const LANG = (document.documentElement.lang || 'bg').toLowerCase().startsWith('en') ? 'en' : 'bg';
+  const t = (bg, en) => LANG === 'en' ? en : bg;
+  const locale = LANG === 'en' ? 'en-GB' : 'bg-BG';
+  const nightWord = (n) => LANG === 'en' ? (n === 1 ? 'night' : 'nights') : 'нощувки';
+
+  // Hero image rotation
+  const heroSlides = $$('.hero-slide');
+  const heroDots = $$('.hero-slide-dots span');
+  let heroIndex = 0;
+  const showHeroSlide = (index) => {
+    if (!heroSlides.length) return;
+    heroIndex = (index + heroSlides.length) % heroSlides.length;
+    heroSlides.forEach((slide, i) => slide.classList.toggle('active', i === heroIndex));
+    heroDots.forEach((dot, i) => dot.classList.toggle('active', i === heroIndex));
+  };
+  if (heroSlides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(() => showHeroSlide(heroIndex + 1), 5200);
+  }
+  showHeroSlide(0);
+
 const handleHeaderState = () => {
   document.body.classList.toggle('scrolled', window.scrollY > 18);
 };
@@ -48,21 +68,23 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
   const houseData = {
     one: {
       image: 'exterior-close.webp',
-      alt: 'Една A-frame къща WOODRA',
+      alt: t('Една A-frame къща WOODRA', 'One WOODRA A-Frame house'),
       chip: 'ONE HOUSE',
-      eyebrow: 'ОПЦИЯ ЗА ПО-МАЛКА КОМПАНИЯ',
-      title: 'Една A-frame къща.<br>Същият WOODRA ритъм.',
-      description: 'Три спални, един разтегателен диван, две бани и механа. Вариант за по-малка компания, която иска да преживее WOODRA в по-компактен формат.',
-      specs: [['3','спални'],['1','разтегателен диван'],['2','бани'],['1','механа']]
+      eyebrow: t('ОПЦИЯ ЗА ПО-МАЛКА КОМПАНИЯ', 'OPTION FOR A SMALLER GROUP'),
+      title: t('Една A-frame къща.<br>Същият WOODRA ритъм.', 'One A-Frame house.<br>The same WOODRA feeling.'),
+      description: t('Три спални, един разтегателен диван, две бани и механа. Вариант за по-малка компания, която иска да преживее WOODRA в по-компактен формат.', 'Three bedrooms, one sofa bed, two bathrooms and access to the traditional dining room. An option for a smaller group looking for the WOODRA experience in a more compact format.'),
+      specs: LANG === 'en' ? [['3','bedrooms'],['1','sofa bed'],['2','bathrooms'],['1','traditional dining room']] : [['3','спални'],['1','разтегателен диван'],['2','бани'],['1','механа']]
     },
     both: {
       image: 'houses-pool.webp',
-      alt: 'Двете A-frame къщи WOODRA',
+      alt: t('Двете A-frame къщи WOODRA', 'The two WOODRA A-Frame houses'),
       chip: 'TWO HOUSES',
-      eyebrow: 'ЦЕЛИЯТ WOODRA ЗА ВАШАТА КОМПАНИЯ',
-      title: 'Целият комплекс.<br>Цялото преживяване.',
-      description: 'Шест спални, два разтегателни дивана, четири бани и две механи, свързани помежду си. Повече пространство, повече време заедно.',
-      specs: [['6','спални'],['2','разтегателни дивана'],['4','бани'],['2','механи']]
+      eyebrow: t('ЦЕЛИЯТ WOODRA Е СЪЗДАДЕН ЗА ВАС.', 'ALL OF WOODRA WAS CREATED FOR YOU.'),
+      title: t('Вашата компания.<br>Вашето преживяване.', 'Your people.<br>Your experience.'),
+      description: t('Шест спални, два разтегателни дивана, четири бани, панорамна тераса и една механа. Повече пространство, повече време заедно.', 'Six bedrooms, two sofa beds, four bathrooms, a panoramic terrace and one traditional dining room. More space, more time together.'),
+      specs: LANG === 'en'
+        ? [['6','bedrooms'],['2','sofa beds'],['4','bathrooms'],['1','traditional dining room'],['16','max. guests'],['Kom Peak','panoramic terrace view']]
+        : [['6','спални'],['2','разтегателни дивана'],['4','бани'],['1','механа'],['16','макс. гости'],['вр. Ком','панорамна тераса с гледка']]
     }
   };
 
@@ -91,7 +113,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
         houseEyebrow.textContent = data.eyebrow;
         houseTitle.innerHTML = data.title;
         houseDescription.textContent = data.description;
-        houseSpecs.innerHTML = data.specs.map(([num,label]) => `<div><strong>${num}</strong><span>${label}</span></div>`).join('');
+        houseSpecs.innerHTML = data.specs.map(([num,label], i) => `<div${data.specs.length > 4 && i === data.specs.length - 1 ? ' class="spec-wide"' : ''}><strong>${num}</strong><span>${label}</span></div>`).join('');
         houseImage.style.opacity = '1';
       }, 180);
       if (houseChoice) houseChoice.value = key === 'one' ? 'Една къща' : 'Двете къщи';
@@ -143,9 +165,9 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
   const bgDate = (value) => {
     const date = typeof value === 'string' ? parseISO(value) : value;
     if (!date) return '';
-    return new Intl.DateTimeFormat('bg-BG', { day: 'numeric', month: 'short' }).format(date);
+    return new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' }).format(date);
   };
-  const bgMonth = (date) => new Intl.DateTimeFormat('bg-BG', { month: 'long', year: 'numeric' }).format(date);
+  const bgMonth = (date) => new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(date);
 
   const arrival = $('#arrival');
   const departure = $('#departure');
@@ -220,14 +242,14 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
   function updateNightCount() {
     const nights = getNights(arrival?.value, departure?.value);
     if (nightCount) {
-      if (!nights) nightCount.textContent = `Изберете период · минимум ${MIN_NIGHTS} нощувки`;
-      else if (nights < MIN_NIGHTS) nightCount.textContent = `Минималният престой е ${MIN_NIGHTS} нощувки`;
-      else nightCount.textContent = `${nights} нощувки · ${bgDate(arrival.value)} → ${bgDate(departure.value)}`;
+      if (!nights) nightCount.textContent = t(`Изберете период · минимум ${MIN_NIGHTS} нощувки`, `Choose a period · minimum ${MIN_NIGHTS} nights`);
+      else if (nights < MIN_NIGHTS) nightCount.textContent = t(`Минималният престой е ${MIN_NIGHTS} нощувки`, `The minimum stay is ${MIN_NIGHTS} nights`);
+      else nightCount.textContent = `${nights} ${nightWord(nights)} · ${bgDate(arrival.value)} → ${bgDate(departure.value)}`;
     }
     if (bookingSelectionTitle) {
       bookingSelectionTitle.textContent = nights >= MIN_NIGHTS
-        ? `${bgDate(arrival.value)} → ${bgDate(departure.value)} · ${nights} нощувки`
-        : 'Изберете дати от календара';
+        ? `${bgDate(arrival.value)} → ${bgDate(departure.value)} · ${nights} ${nightWord(nights)}`
+        : t('Изберете дати от календара', 'Choose dates from the calendar');
     }
   }
 
@@ -254,37 +276,37 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
     if (!state.selectedStart || state.selectedEnd) {
       if (!modeNightAvailable(date)) {
-        updateCalendarStatus('Тази дата е заета. Изберете друга начална дата.', 'error');
+        updateCalendarStatus(t('Тази дата е заета. Изберете друга начална дата.', 'This date is unavailable. Choose another arrival date.'), 'error');
         return;
       }
       setSelectedRange(date, null);
-      updateCalendarStatus(`Настаняване: ${bgDate(date)}. Сега изберете освобождаване, минимум ${MIN_NIGHTS} нощувки.`);
+      updateCalendarStatus(t(`Настаняване: ${bgDate(date)}. Сега изберете освобождаване, минимум ${MIN_NIGHTS} нощувки.`, `Arrival: ${bgDate(date)}. Now choose departure, minimum ${MIN_NIGHTS} nights.`));
       return;
     }
 
     if (date <= state.selectedStart) {
       if (!modeNightAvailable(date)) {
-        updateCalendarStatus('Тази дата е заета. Изберете друга начална дата.', 'error');
+        updateCalendarStatus(t('Тази дата е заета. Изберете друга начална дата.', 'This date is unavailable. Choose another arrival date.'), 'error');
         return;
       }
       setSelectedRange(date, null);
-      updateCalendarStatus(`Нова начална дата: ${bgDate(date)}. Изберете освобождаване.`);
+      updateCalendarStatus(t(`Нова начална дата: ${bgDate(date)}. Изберете освобождаване.`, `New arrival date: ${bgDate(date)}. Choose departure.`));
       return;
     }
 
     const nights = getNights(state.selectedStart, date);
     if (nights < MIN_NIGHTS) {
-      updateCalendarStatus(`Минимум ${MIN_NIGHTS} нощувки. Изберете по-късна дата за освобождаване.`, 'error');
+      updateCalendarStatus(t(`Минимум ${MIN_NIGHTS} нощувки. Изберете по-късна дата за освобождаване.`, `Minimum ${MIN_NIGHTS} nights. Choose a later departure date.`), 'error');
       return;
     }
 
     if (!isRangeAvailable(state.selectedStart, date)) {
-      updateCalendarStatus('В този период няма една и съща свободна къща за целия престой. Опитайте по-кратък или друг период.', 'error');
+      updateCalendarStatus(t('В този период няма една и съща свободна къща за целия престой. Опитайте по-кратък или друг период.', 'There is no single house available for this entire stay. Try a shorter or different period.'), 'error');
       return;
     }
 
     setSelectedRange(state.selectedStart, date);
-    updateCalendarStatus(`${nights} нощувки · ${bgDate(state.selectedStart)} → ${bgDate(date)} · периодът е свободен`, 'success');
+    updateCalendarStatus(t(`${nights} нощувки · ${bgDate(state.selectedStart)} → ${bgDate(date)} · периодът е свободен`, `${nights} ${nightWord(nights)} · ${bgDate(state.selectedStart)} → ${bgDate(date)} · available`), 'success');
   }
 
   function renderMonth(monthDate) {
@@ -292,12 +314,12 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     month.className = 'calendar-month';
     const title = document.createElement('div');
     title.className = 'calendar-month-title';
-    title.innerHTML = `<strong>${bgMonth(monthDate)}</strong><span>${state.houseMode === 'both' ? '2 КЪЩИ' : '1 КЪЩА'}</span>`;
+    title.innerHTML = `<strong>${bgMonth(monthDate)}</strong><span>${state.houseMode === 'both' ? t('2 КЪЩИ','2 HOUSES') : t('1 КЪЩА','1 HOUSE')}</span>`;
     month.appendChild(title);
 
     const weekdays = document.createElement('div');
     weekdays.className = 'calendar-weekdays';
-    ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'].forEach(day => {
+    (LANG === 'en' ? ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'] : ['Пн','Вт','Ср','Чт','Пт','Сб','Нд']).forEach(day => {
       const el = document.createElement('span');
       el.textContent = day;
       weekdays.appendChild(el);
@@ -354,10 +376,10 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
       if (key === isoDate(today)) button.classList.add('today');
 
       const availabilityLabel = past
-        ? 'минала дата'
+        ? t('минала дата','past date')
         : (state.houseMode === 'one'
-          ? `${freeCount} свободни къщи`
-          : (freeCount === 2 ? 'двете къщи са свободни' : 'заето'));
+          ? LANG === 'en' ? `${freeCount} houses available` : `${freeCount} свободни къщи`
+          : (freeCount === 2 ? t('двете къщи са свободни','both houses are available') : t('заето','unavailable')));
       button.setAttribute('aria-label', `${day} ${bgMonth(monthDate)}, ${availabilityLabel}`);
       button.addEventListener('click', () => selectCalendarDate(date));
       grid.appendChild(button);
@@ -423,7 +445,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
       state.house1Busy = new Set();
       state.house2Busy = new Set();
       renderCalendar();
-      updateCalendarStatus('Изберете начална дата. Онлайн резервациите ще бъдат активирани скоро.');
+      updateCalendarStatus(t('Изберете начална дата. Онлайн резервациите ще бъдат активирани скоро.', 'Choose an arrival date. Online booking will be activated soon.'));
       return;
     }
 
@@ -441,16 +463,16 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
       if (state.selectedStart && state.selectedEnd && !isRangeAvailable(state.selectedStart, state.selectedEnd)) {
         setSelectedRange(null, null);
-        updateCalendarStatus('Избраният период вече не е свободен. Моля, изберете нови дати.', 'error');
+        updateCalendarStatus(t('Избраният период вече не е свободен. Моля, изберете нови дати.', 'The selected period is no longer available. Please choose new dates.'), 'error');
       } else {
         updateCalendarStatus(state.selectedStart
-          ? `Настаняване: ${bgDate(state.selectedStart)}. Изберете освобождаване.`
-          : 'Свободните дати са актуални.', 'success');
+          ? t(`Настаняване: ${bgDate(state.selectedStart)}. Изберете освобождаване.`, `Arrival: ${bgDate(state.selectedStart)}. Choose departure.`)
+          : t('Свободните дати са актуални.', 'Availability is up to date.'), 'success');
       }
     } catch (error) {
       state.liveAvailability = false;
       renderCalendar();
-      updateCalendarStatus('В момента не успяваме да обновим календара. Опитайте отново след малко.', 'error');
+      updateCalendarStatus(t('В момента не успяваме да обновим календара. Опитайте отново след малко.', 'We cannot update the calendar right now. Please try again shortly.'), 'error');
     } finally {
       setLoading(false);
     }
@@ -467,7 +489,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
     if (clearInvalid && state.selectedStart && state.selectedEnd && !isRangeAvailable(state.selectedStart, state.selectedEnd)) {
       setSelectedRange(state.selectedStart, null);
-      updateCalendarStatus('Сменихте варианта. Изберете нова дата за освобождаване.');
+      updateCalendarStatus(t('Сменихте варианта. Изберете нова дата за освобождаване.', 'You changed the accommodation option. Choose a new departure date.'));
     } else {
       renderCalendar();
     }
@@ -493,7 +515,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     const maxMonth = addMonths(startOfMonth(today), MONTHS_AHEAD);
     const next = addMonths(state.viewMonth, 1);
     if (next > maxMonth) {
-      updateCalendarStatus(`Календарът показва до ${MONTHS_AHEAD} месеца напред.`);
+      updateCalendarStatus(t(`Календарът показва до ${MONTHS_AHEAD} месеца напред.`, `The calendar shows up to ${MONTHS_AHEAD} months ahead.`));
       return;
     }
     state.viewMonth = next;
@@ -516,15 +538,15 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     const end = parseISO(departure.value);
     const nights = getNights(start, end);
     if (nights < MIN_NIGHTS) {
-      updateCalendarStatus(`Минимум ${MIN_NIGHTS} нощувки.`, 'error');
+      updateCalendarStatus(t(`Минимум ${MIN_NIGHTS} нощувки.`, `Minimum ${MIN_NIGHTS} nights.`), 'error');
       return;
     }
     if (!isRangeAvailable(start, end)) {
-      updateCalendarStatus('Избраният период не е свободен за този вариант.', 'error');
+      updateCalendarStatus(t('Избраният период не е свободен за този вариант.', 'The selected period is not available for this option.'), 'error');
       return;
     }
     setSelectedRange(start, end, { syncInputs: false });
-    updateCalendarStatus(`${nights} нощувки · периодът е свободен`, 'success');
+    updateCalendarStatus(t(`${nights} нощувки · периодът е свободен`, `${nights} ${nightWord(nights)} · available`), 'success');
   });
 
   quickArrival?.addEventListener('change', () => syncDepartureMin(quickArrival, quickDeparture));
@@ -561,7 +583,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
   });
 
 
-const navSections = ['hero','intro','houses','amenities','gallery','around','location','booking']
+const navSections = ['hero','intro','houses','amenities','gallery','around','location','rules','booking']
   .map(id => document.getElementById(id))
   .filter(Boolean);
 const prevSectionButton = $('#section-prev');
@@ -610,7 +632,7 @@ window.addEventListener('resize', updateFloatingNav);
     state.pendingNonce = '';
     if (submitButton) {
       submitButton.disabled = false;
-      submitButton.innerHTML = 'Резервирай <span>↗</span>';
+      submitButton.innerHTML = t('Резервирай <span>↗</span>', 'Book now <span>↗</span>');
     }
   }
 
@@ -621,7 +643,7 @@ window.addEventListener('resize', updateFloatingNav);
     clearSubmitState();
 
     if (!data.ok) {
-      status.textContent = data.message || 'Не успяхме да направим резервацията. Опитайте отново.';
+      status.textContent = data.message || t('Не успяхме да направим резервацията. Опитайте отново.', 'We could not complete the booking. Please try again.');
       status.className = 'form-status error';
       if (data.code === 'UNAVAILABLE') loadAvailability();
       return;
@@ -630,7 +652,7 @@ window.addEventListener('resize', updateFloatingNav);
     status.textContent = '';
     status.className = 'form-status success';
     if (successCard) successCard.hidden = false;
-    if (successCopy) successCopy.textContent = `${data.dates || ''} · ${data.houseLabel || ''}. Проверете имейла си за стъпките за депозит.`;
+    if (successCopy) successCopy.textContent = `${data.dates || ''} · ${LANG === 'en' ? (data.houseLabel === 'Двете къщи' ? 'Both houses' : data.houseLabel === 'Една къща' ? 'One house' : (data.houseLabel || '')) : (data.houseLabel || '')}. ${t('Проверете имейла си за стъпките за депозит.', 'Check your email for the deposit instructions.')}`;
     if (bookingReference) bookingReference.textContent = `№ ${data.reference || ''}`;
     form.reset();
     setHouseMode('both');
@@ -646,7 +668,7 @@ window.addEventListener('resize', updateFloatingNav);
 
     const endpoint = String(config.bookingEndpoint || '').trim();
     if (!endpoint) {
-      status.textContent = 'Онлайн резервациите се активират в момента. Моля, опитайте отново скоро.';
+      status.textContent = t('Онлайн резервациите се активират в момента. Моля, опитайте отново скоро.', 'Online booking is being activated. Please try again soon.');
       status.classList.add('error');
       return;
     }
@@ -654,17 +676,17 @@ window.addEventListener('resize', updateFloatingNav);
     const nights = getNights(arrival.value, departure.value);
     if (!form.checkValidity()) {
       form.reportValidity();
-      status.textContent = 'Моля, попълнете задължителните полета.';
+      status.textContent = t('Моля, попълнете задължителните полета.', 'Please complete the required fields.');
       status.classList.add('error');
       return;
     }
     if (nights < MIN_NIGHTS) {
-      status.textContent = `Резервацията трябва да бъде за минимум ${MIN_NIGHTS} нощувки.`;
+      status.textContent = t(`Резервацията трябва да бъде за минимум ${MIN_NIGHTS} нощувки.`, `The reservation must be for at least ${MIN_NIGHTS} nights.`);
       status.classList.add('error');
       return;
     }
     if (!state.liveAvailability) {
-      status.textContent = 'Не успяваме да потвърдим свободните дати в момента. Обновете календара и опитайте пак.';
+      status.textContent = t('Не успяваме да потвърдим свободните дати в момента. Обновете календара и опитайте пак.', 'We cannot confirm availability right now. Refresh the calendar and try again.');
       status.classList.add('error');
       loadAvailability();
       return;
@@ -673,7 +695,7 @@ window.addEventListener('resize', updateFloatingNav);
     const start = parseISO(arrival.value);
     const end = parseISO(departure.value);
     if (!isRangeAvailable(start, end)) {
-      status.textContent = 'Този период току-що е зает или не е свободен за избрания вариант. Изберете други дати.';
+      status.textContent = t('Този период току-що е зает или не е свободен за избрания вариант. Изберете други дати.', 'This period has just been booked or is unavailable for the selected option. Choose different dates.');
       status.classList.add('error');
       loadAvailability();
       return;
@@ -686,13 +708,13 @@ window.addEventListener('resize', updateFloatingNav);
     form.target = 'booking-response-frame';
 
     submitButton.disabled = true;
-    submitButton.textContent = 'Резервираме…';
-    status.textContent = 'Проверяваме датите още веднъж и блокираме периода…';
+    submitButton.textContent = t('Резервираме…', 'Booking…');
+    status.textContent = t('Проверяваме датите още веднъж и блокираме периода…', 'Checking the dates one more time and holding the period…');
 
     state.submitTimer = setTimeout(() => {
       if (!state.pendingNonce) return;
       clearSubmitState();
-      status.textContent = 'Отговорът се забави. Проверете имейла си преди да изпратите отново.';
+      status.textContent = t('Отговорът се забави. Проверете имейла си преди да изпратите отново.', 'The response is taking longer than expected. Check your email before submitting again.');
       status.className = 'form-status error';
     }, 25000);
 
