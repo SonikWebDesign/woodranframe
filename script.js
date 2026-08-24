@@ -83,8 +83,8 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
       title: t('Вашата компания.<br>Вашето преживяване.', 'Your people.<br>Your experience.'),
       description: t('Шест спални, два разтегателни дивана, четири бани, панорамна тераса и една механа. Повече пространство, повече време заедно.', 'Six bedrooms, two sofa beds, four bathrooms, a panoramic terrace and one traditional dining room. More space, more time together.'),
       specs: LANG === 'en'
-        ? [['6','bedrooms'],['2','sofa beds'],['4','bathrooms'],['1','traditional dining room'],['16','max. guests'],['Kom Peak','panoramic terrace view']]
-        : [['6','спални'],['2','разтегателни дивана'],['4','бани'],['1','механа'],['16','макс. гости'],['вр. Ком','панорамна тераса с гледка']]
+        ? [['6','bedrooms'],['2','sofa beds'],['4','bathrooms'],['1','traditional dining room'],['16','max. guests'],['Panoramic terrace with a view of Kom Peak','']]
+        : [['6','спални'],['2','разтегателни дивана'],['4','бани'],['1','механа'],['16','макс. гости'],['Панорамна тераса с гледка към връх Ком','']]
     }
   };
 
@@ -113,7 +113,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
         houseEyebrow.textContent = data.eyebrow;
         houseTitle.innerHTML = data.title;
         houseDescription.textContent = data.description;
-        houseSpecs.innerHTML = data.specs.map(([num,label], i) => `<div${data.specs.length > 4 && i === data.specs.length - 1 ? ' class="spec-wide"' : ''}><strong>${num}</strong><span>${label}</span></div>`).join('');
+        houseSpecs.innerHTML = data.specs.map(([num,label], i) => { const wide = data.specs.length > 4 && i === data.specs.length - 1; return `<div${wide ? ' class="spec-wide terrace-spec"' : ''}><strong>${num}</strong>${label ? `<span>${label}</span>` : ''}</div>`; }).join('');
         houseImage.style.opacity = '1';
       }, 180);
       if (houseChoice) houseChoice.value = key === 'one' ? 'Една къща' : 'Двете къщи';
