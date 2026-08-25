@@ -1613,165 +1613,170 @@ body.scrolled .site-header { background: rgba(5,14,10,.72); backdrop-filter: blu
 
 .reduced-motion .hero-slide { transition: none; transform: none !important; }
 
-
 /* =========================================================
-   WOODRA round 3 polish: compact contact header, larger socials,
-   full terrace label, always-visible rules
+   WOODRA v12 · PHOTO POLISH
+   Final image rules. Keep this block at the END of styles.css.
    ========================================================= */
-.contact-label {
-  color: var(--wood-light);
-  font-weight: 800;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.contact-sep { opacity: .38; }
-.mobile-contact-break { display: none; }
-.top-contact-left { gap: 9px; }
-.top-contact-bar { min-height: 44px; padding-top: 5px; padding-bottom: 5px; }
-.site-header { top: 44px; }
-.top-socials { gap: 10px; }
-.top-social-link {
-  width: 36px;
-  height: 36px;
-  border-color: rgba(211,176,108,.36);
-  background: rgba(255,255,255,.025);
-}
-.top-social-link svg { width: 18px; height: 18px; }
 
-.spec-grid .terrace-spec {
-  grid-column: 1 / -1;
-  padding-top: 22px;
-  padding-bottom: 22px;
-}
-.spec-grid .terrace-spec strong {
-  font-size: clamp(19px, 1.8vw, 27px);
-  line-height: 1.22;
-  color: var(--white);
-}
-@media (min-width: 1180px) {
-  .spec-grid .terrace-spec strong { white-space: nowrap; }
+/* Premium photo edge: quiet champagne line, no chunky frames. */
+.cinema-card,
+.house-photo,
+.amenity-card,
+.panorama-feature,
+.interior-tall,
+.interior-slider,
+.gallery-item,
+.gallery-video-item,
+.breakfast-photo {
+  border-color: rgba(211, 176, 108, .24) !important;
+  box-shadow: 0 22px 70px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.018);
 }
 
-/* Rules are informational, not accordions: everything is visible. */
-.rules-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  align-items: stretch;
+/* Stop the old zoom effect. The photograph, not the crop, is the hero. */
+.hero-slide,
+.hero-slide.active,
+.cinema-card img,
+.cinema-card:hover img,
+.house-photo img,
+.house-experience:hover .house-photo img,
+.amenity-card img,
+.amenity-card:hover img,
+.gallery-item img,
+.gallery-item:hover img {
+  transform: none !important;
 }
-.rule-card {
-  position: relative;
-  min-height: 100%;
-  padding: 24px 24px 25px;
-  border: 1px solid rgba(211,176,108,.16);
-  border-radius: 20px;
-  background: linear-gradient(150deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
-  overflow: hidden;
+
+.hero-slide {
+  transition: opacity 1.05s ease !important;
+  object-fit: cover;
 }
-.rule-card::after {
+.hero-sunset { object-position: center 58%; }
+.hero-stars { object-position: center 72%; }
+.hero-houses { object-position: center 58%; }
+.hero-mountain { object-position: center 62%; }
+
+/* Make the hero feel framed without drawing a box around it. */
+.hero::after {
   content: "";
   position: absolute;
-  width: 110px;
-  height: 110px;
-  right: -55px;
-  top: -55px;
-  border-radius: 50%;
-  background: rgba(211,176,108,.045);
+  z-index: 3;
+  inset: 12px;
+  border: 1px solid rgba(211,176,108,.14);
   pointer-events: none;
 }
-.rule-card-title {
-  display: flex;
-  align-items: flex-start;
-  gap: 13px;
-  padding-bottom: 16px;
-  margin-bottom: 13px;
-  border-bottom: 1px solid rgba(211,176,108,.13);
-}
-.rule-card-title span {
-  flex: 0 0 auto;
-  color: var(--wood-light);
-  font-size: 10px;
-  line-height: 1.8;
-  letter-spacing: .16em;
-  font-weight: 800;
-}
-.rule-card-title h3 {
-  margin: 0;
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(21px, 2vw, 27px);
-  line-height: 1.05;
-}
-.rule-body {
-  color: rgba(245,238,224,.68);
-  font-size: 13px;
-  line-height: 1.68;
-}
-.rule-body p { margin: 7px 0; }
-.rule-body strong { color: var(--white); }
 
-@media (max-width: 1020px) {
-  .rules-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .top-email { display: inline !important; }
+/* Main content photos */
+.cinema-card,
+.house-photo,
+.amenity-card,
+.panorama-feature,
+.gallery-item,
+.gallery-video-item {
+  border: 1px solid rgba(211,176,108,.22) !important;
+}
+
+/* Breakfast becomes a proper editorial photo block. */
+.breakfast-card-photo {
+  display: grid;
+  grid-template-columns: minmax(280px, .9fr) minmax(0, 1.35fr);
+  gap: 0;
+  padding: 0 !important;
+  overflow: hidden;
+  border: 1px solid rgba(211,176,108,.22) !important;
+}
+.breakfast-photo {
+  min-height: 430px;
+  overflow: hidden;
+  border-right: 1px solid rgba(211,176,108,.18);
+}
+.breakfast-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  object-fit: cover;
+  object-position: center 58%;
+}
+.breakfast-body {
+  padding: clamp(24px, 3.2vw, 42px);
+  align-self: center;
+}
+.breakfast-body > a {
+  display: inline-flex;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(211,176,108,.35);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--wood-light);
+}
+
+/* Interior images stay elegant but never animate into a crop. */
+.interior-slide img,
+.interior-tall img {
+  transform: none !important;
+}
+
+/* Desktop: show the complete gallery photographs instead of aggressive crops. */
+@media (min-width: 1025px) {
+  .hero-booking-teaser { display: none !important; }
+
+  .gallery-grid-rich .gallery-item {
+    background: #07150f;
+    padding: 9px;
+  }
+  .gallery-grid-rich .gallery-item img {
+    object-fit: contain !important;
+    object-position: center !important;
+    border: 1px solid rgba(211,176,108,.12);
+    background: #07150f;
+  }
+  .gallery-grid-rich .gallery-item.wide { grid-column: span 6; }
+  .gallery-grid-rich .gallery-item.tall { grid-row: span 2; }
+  .gallery-video-item.wide { grid-column: span 6; }
+  .gallery-video-item video { min-height: 100%; }
+
+  /* Larger, calmer image areas, closer to a boutique editorial layout. */
+  .amenity-card img,
+  .house-photo img,
+  .cinema-card img,
+  .panorama-feature img {
+    object-position: center;
+  }
+  .panorama-feature img { object-position: center 58%; }
+}
+
+@media (max-width: 1024px) {
+  .breakfast-card-photo { grid-template-columns: 1fr; }
+  .breakfast-photo { min-height: 360px; border-right: 0; border-bottom: 1px solid rgba(211,176,108,.18); }
+  .breakfast-photo img { min-height: 360px; }
 }
 
 @media (max-width: 720px) {
-  .top-contact-bar {
-    min-height: 62px;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-  }
-  .top-contact-left {
-    max-width: calc(100% - 86px);
-    flex-wrap: wrap;
-    gap: 2px 6px;
-    line-height: 1.25;
-  }
-  .contact-label { font-size: 8px; }
-  .top-contact-link { font-size: 9px !important; letter-spacing: .015em; }
-  .contact-sep { display: none; }
-  .mobile-contact-break { display: block; flex-basis: 100%; height: 0; }
-  .language-switch {
-    padding-left: 7px;
-    margin-left: 2px;
-    gap: 4px;
-    font-size: 9px;
-  }
-  .top-socials { gap: 7px; }
-  .top-social-link { width: 34px; height: 34px; }
-  .top-social-link svg { width: 18px; height: 18px; }
-  .site-header { top: 62px; }
-  .mobile-menu { padding-top: 155px !important; }
+  .hero::after { inset: 7px; }
+  .hero-sunset { object-position: 50% 56%; }
+  .hero-stars { object-position: 50% 67%; }
+  .hero-houses { object-position: 50% 55%; }
+  .hero-mountain { object-position: 50% 58%; }
 
-  .spec-grid .terrace-spec {
-    padding: 18px 15px;
+  .breakfast-photo,
+  .breakfast-photo img { min-height: 300px; }
+
+  /* Keep mobile immersive. No desktop contain/padding rules here. */
+  .gallery-grid-rich .gallery-item {
+    padding: 0;
   }
-  .spec-grid .terrace-spec strong {
-    font-size: 20px;
-    line-height: 1.25;
+  .gallery-grid-rich .gallery-item img {
+    object-fit: cover !important;
+    transform: none !important;
   }
 
-  .rules-head { margin-bottom: 28px; }
-  .rules-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-  .rule-card {
-    padding: 18px 17px 18px 18px;
-    border-radius: 16px;
-    border-left: 3px solid rgba(211,176,108,.56);
+  .sticky-booking-cta {
+    width: calc(100% - 32px) !important;
+    left: 16px !important;
+    right: 16px !important;
   }
-  .rule-card-title {
-    gap: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 9px;
-  }
-  .rule-card-title h3 { font-size: 22px; }
-  .rule-body { font-size: 12.5px; line-height: 1.58; }
-  .rule-body p { margin: 5px 0; }
 }
 
-@media (max-width: 430px) {
-  .top-contact-bar { padding-inline: 10px; }
-  .top-contact-left { max-width: calc(100% - 80px); }
-  .top-social-link { width: 32px; height: 32px; }
-  .top-social-link svg { width: 17px; height: 17px; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { transition: none !important; }
 }

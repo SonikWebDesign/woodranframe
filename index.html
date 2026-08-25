@@ -1,6 +1,4 @@
 <!doctype html>
-<!DOCTYPE html>
-
 <html lang="bg">
 <head>
 <meta charset="utf-8"/>
@@ -18,56 +16,15 @@
 <link href="styles.css" rel="stylesheet"/>
 <script defer="" src="config.js"></script>
 <script defer="" src="script.js"></script>
-<style>
-    /* Houses section headline: longer copy, slightly smaller size + gold accent */
-    .houses .section-head h2.headline-tight {
-      font-size: clamp(2.4rem, 4.2vw, 4.2rem);
-      line-height: 1.15;
-    }
 
-    em.gold {
-      font-style: italic;
-      color: #cbb075;
-    }
-
-    /* v11 desktop-only polish: mobile rules are intentionally untouched */
-    @media (min-width: 1025px) {
-      .hero-booking-teaser {
-        display: none !important;
-      }
-
-      .gallery-grid-rich .gallery-item {
-        background: #07150f;
-      }
-
-      .gallery-grid-rich .gallery-item img {
-        object-fit: contain !important;
-        object-position: center center !important;
-        transform: none !important;
-      }
-
-      .gallery-grid-rich .gallery-item:hover img {
-        transform: none !important;
-      }
-
-      .cinema-card img {
-        object-fit: cover !important;
-        object-position: center 48% !important;
-      }
-    }
-  </style>
 </head>
 <body>
 <div aria-hidden="true" class="scroll-progress"><span></span></div>
 <div aria-hidden="true" class="noise"></div>
-
 <div class="top-contact-bar">
 <div class="top-contact-left">
-<span class="contact-label">За връзка:</span>
-<a aria-label="Телефон за връзка" class="top-contact-link top-phone" href="tel:+359885624476">+359 (0)88/562 4476</a>
-<span class="contact-sep" aria-hidden="true">·</span>
-<span class="mobile-contact-break" aria-hidden="true"></span>
-<a aria-label="Имейл за връзка" class="top-contact-link top-email" href="mailto:sonikwebco@gmail.com">sonikwebco@gmail.com</a>
+<a aria-label="Телефон за връзка" class="top-contact-link" href="tel:+359885624476">+359 (0)88/562 4476</a>
+<a class="top-contact-link top-email" href="mailto:sonikwebco@gmail.com">sonikwebco@gmail.com</a>
 <div aria-label="Избор на език" class="language-switch">
 <a aria-current="page" class="active" href="index.html" lang="bg">BG</a>
 <span>/</span>
@@ -123,19 +80,16 @@
 </a>
 <main>
 <section aria-label="WOODRA A-FRAME" class="hero" id="hero">
-
 <div aria-hidden="true" class="hero-slideshow">
-<img alt="" class="hero-slide active" fetchpriority="high" src="houses-pool.webp"/>
-<img alt="" class="hero-slide" src="pool-sunset.webp"/>
-<img alt="" class="hero-slide" src="night-exterior.webp"/>
-<img alt="" class="hero-slide" src="aerial.webp"/>
+<img alt="" class="hero-slide active hero-sunset" fetchpriority="high" src="IMG_0170.jpg"/>
+<img alt="" class="hero-slide hero-stars" src="IMG_0173.jpg"/>
+<img alt="" class="hero-slide hero-houses" src="IMG_0174.jpg"/>
+<img alt="" class="hero-slide hero-mountain" src="IMG_0178.jpg"/>
 </div>
 <div aria-hidden="true" class="hero-slide-dots"><span class="active"></span><span></span><span></span><span></span></div>
-
 <div class="hero-shade"></div>
 <div aria-hidden="true" class="hero-glow"></div>
 <div class="hero-copy reveal">
-
 <p class="eyebrow">Добре дошли в WOODRA A-FRAME</p>
 <h1>Твоето място<br/><em>за бягство.</em></h1>
 <p class="hero-lead">Сред природата на Берковица създадохме място, в което модерният комфорт среща усещането за свобода.</p>
@@ -165,11 +119,9 @@
 <div class="intro-copy reveal">
 <h2>Уникални A-Frame къщи, спокойствие, простор и всичко необходимо за истинска почивка – <em>далеч от шума и близо до природата.</em></h2>
 </div>
-
 </div>
 <div class="cinema-card reveal" data-parallax-card="">
-<img alt="WOODRA A-FRAME през нощта" loading="lazy" src="night-exterior.webp"/>
-
+<img alt="WOODRA A-FRAME под звездите" loading="lazy" src="IMG_0173.jpg"/>
 </div>
 <div class="signature-strip reveal">
 <div class="signature-copy">
@@ -197,7 +149,7 @@
 </div>
 <div class="house-experience reveal" data-view="both" id="house-experience">
 <div class="house-photo">
-<img alt="Двете A-frame къщи WOODRA" id="house-image" loading="lazy" src="houses-pool.webp"/>
+<img alt="Двете A-frame къщи WOODRA" id="house-image" loading="lazy" src="IMG_0174.jpg"/>
 <div class="photo-chip" id="house-chip">TWO HOUSES</div>
 </div>
 <div class="house-details">
@@ -210,13 +162,12 @@
 <div><strong>4</strong><span>бани</span></div>
 <div><strong>1</strong><span>механа</span></div>
 <div><strong>16</strong><span>макс. гости</span></div>
-<div class="spec-wide terrace-spec"><strong>Панорамна тераса с гледка към връх Ком</strong></div>
+<div class="spec-wide"><strong>вр. Ком</strong><span>панорамна тераса с гледка</span></div>
 </div>
 <a class="text-link" href="#booking">Резервирай двете къщи <span>↗</span></a>
 </div>
 </div>
 </section>
-
 <section class="amenities section" id="amenities">
 <div class="section-head reveal">
 <div>
@@ -242,7 +193,7 @@
 </div>
 </article>
 <article class="amenity-card reveal">
-<img alt="Вечер край басейна" loading="lazy" src="pool-night.webp"/>
+<img alt="Барбекю с гледка към планината" loading="lazy" src="IMG_0177.jpg"/>
 <div class="amenity-content">
 <span>03</span>
 <h3>Огнище &amp; барбекю</h3>
@@ -257,8 +208,8 @@
 <p>Двор, трева и достатъчно място децата да тичат необезпокоявани.</p>
 </div>
 </article>
-<article class="amenity-card amenity-card-text reveal">
-<div class="amenity-symbol">≈</div>
+<article class="amenity-card reveal"><img alt="Реката в двора на WOODRA" loading="lazy" src="IMG_0176.jpg"/>
+
 <div class="amenity-content">
 <span>05</span>
 <h3>Река в двора</h3>
@@ -275,26 +226,11 @@
 </article>
 </div>
 <article class="panorama-feature reveal">
-<img alt="Панорамна тераса с гледка към връх Ком" loading="lazy" src="terrace.webp"/>
+<img alt="Панорамна тераса с гледка към връх Ком" loading="lazy" src="IMG_0178.jpg"/>
 <div class="panorama-overlay"></div>
 <div class="panorama-copy"><span>THE VIEW</span><h3>Панорамна тераса<br/>с гледка към <em>връх Ком.</em></h3></div>
 </article>
-
-
-<div class="breakfast-card reveal">
-<div class="breakfast-card-head">
-<span class="breakfast-icon">☕</span>
-<div><span class="breakfast-eyebrow">ПО ЗАЯВКА</span><strong>Традиционна българска закуска</strong><p>Изберете една от трите домашни предложения.</p></div>
-<div class="breakfast-price"><strong>12 €</strong><span>на човек</span></div>
-</div>
-<div class="breakfast-options">
-<div><span>01</span><p>Мекици с домашно сладко и сирене</p></div>
-<div><span>02</span><p>Домашна баница със сирене</p></div>
-<div><span>03</span><p>Пържени филийки с домашно сладко и сирене</p></div>
-</div>
-<a href="#booking">Добави към престоя →</a>
-</div>
-
+<div class="breakfast-card breakfast-card-photo reveal"><div class="breakfast-photo"><img alt="Традиционна закуска в WOODRA с гледка към планината" loading="lazy" src="IMG_0172.jpg"/></div><div class="breakfast-body"><div class="breakfast-card-head"><span class="breakfast-icon">☕</span><div><span class="breakfast-eyebrow">ПО ЗАЯВКА</span><strong>Традиционна българска закуска</strong><p>Домашно начало на деня с гледка към Балкана.</p></div><div class="breakfast-price"><strong>12 €</strong><span>на човек</span></div></div><div class="breakfast-options"><div><span>01</span><p>Мекици с домашно сладко и сирене</p></div><div><span>02</span><p>Домашна баница със сирене</p></div><div><span>03</span><p>Пържени филийки с домашно сладко и сирене</p></div></div><a href="#booking">Добави към престоя →</a></div></div>
 </section>
 <section class="interior section">
 <div class="interior-grid">
@@ -331,23 +267,7 @@
 <h2>Кадри от WOODRA.</h2>
 </div>
 </div>
-<div class="gallery-grid gallery-grid-rich">
-<div class="gallery-video-item wide reveal">
-<video aria-label="Видео от WOODRA A-FRAME" controls="" playsinline="" poster="hero-poster.jpg" preload="metadata">
-<source src="woodra-03.mp4" type="video/mp4"/>
-</video>
-<span>WOODRA · VIDEO</span>
-</div>
-
-<button aria-label="Отвори снимката" class="gallery-item wide reveal" data-lightbox="night-exterior.webp"><img alt="WOODRA през нощта" loading="lazy" src="night-exterior.webp"/></button>
-<button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="houses-pool.webp"><img alt="Двете къщи и басейнът" loading="lazy" src="houses-pool.webp"/></button>
-<button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="pool-sunset.webp"><img alt="Басейн по залез" loading="lazy" src="pool-sunset.webp"/></button>
-<button aria-label="Отвори снимката" class="gallery-item tall aframe reveal" data-lightbox="aerial.webp"><img alt="WOODRA от високо" loading="lazy" src="aerial.webp"/></button>
-<button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="terrace.webp"><img alt="Тераса и шезлонги" loading="lazy" src="terrace.webp"/></button>
-<button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="fruit-relax.webp"><img alt="Плодове и кът за почивка" loading="lazy" src="fruit-relax.webp"/></button>
-<button aria-label="Отвори снимката" class="gallery-item wide reveal" data-lightbox="pool-night.webp"><img alt="Вечер край басейна" loading="lazy" src="pool-night.webp"/></button>
-<button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="exterior-close.webp"><img alt="A-frame фасада" loading="lazy" src="exterior-close.webp"/></button>
-</div>
+<div class="gallery-grid gallery-grid-rich"><button aria-label="Отвори снимката" class="gallery-item reveal wide" data-lightbox="IMG_0173.jpg" type="button"><img alt="Нощ над WOODRA" loading="lazy" src="IMG_0173.jpg"/></button><div class="gallery-video-item wide reveal"><video aria-label="Видео от WOODRA A-FRAME" controls="" playsinline="" poster="hero-poster.jpg" preload="metadata"><source src="woodra-03.mp4" type="video/mp4"/></video><span>WOODRA · VIDEO</span></div><button aria-label="Отвори снимката" class="gallery-item reveal wide" data-lightbox="IMG_0170.jpg" type="button"><img alt="Залез край A-frame къщата" loading="lazy" src="IMG_0170.jpg"/></button><button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="IMG_0174.jpg" type="button"><img alt="Двете A-frame къщи" loading="lazy" src="IMG_0174.jpg"/></button><button aria-label="Отвори снимката" class="gallery-item reveal tall" data-lightbox="IMG_0178.jpg" type="button"><img alt="Гледка към планината" loading="lazy" src="IMG_0178.jpg"/></button><button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="IMG_0172.jpg" type="button"><img alt="Домашна закуска с гледка" loading="lazy" src="IMG_0172.jpg"/></button><button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="IMG_0177.jpg" type="button"><img alt="Барбекю с планинска гледка" loading="lazy" src="IMG_0177.jpg"/></button><button aria-label="Отвори снимката" class="gallery-item reveal wide" data-lightbox="IMG_0176.jpg" type="button"><img alt="Реката в двора" loading="lazy" src="IMG_0176.jpg"/></button><button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="IMG_0175.jpg" type="button"><img alt="Кухнята в WOODRA" loading="lazy" src="IMG_0175.jpg"/></button><button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="IMG_0171.jpg" type="button"><img alt="Детайл от отопляемия басейн" loading="lazy" src="IMG_0171.jpg"/></button><button aria-label="Отвори снимката" class="gallery-item reveal" data-lightbox="terrace.webp" type="button"><img alt="Тераса и кът за отдих" loading="lazy" src="terrace.webp"/></button><button aria-label="Отвори снимката" class="gallery-item reveal wide" data-lightbox="pool-night.webp" type="button"><img alt="Вечер край басейна" loading="lazy" src="pool-night.webp"/></button></div>
 </section>
 <section aria-label="WOODRA атмосфера" class="film-strip">
 <video autoplay="" loop="" muted="" playsinline="" poster="aerial.webp" preload="metadata">
@@ -399,15 +319,14 @@
 <h2>Моля, запознайте се с нашите<br/><em>правила за настаняване.</em></h2>
 </div>
 <div class="rules-grid">
-<article class="rule-card reveal"><div class="rule-card-title"><span>01</span><h3>Настаняване и напускане</h3></div><div class="rule-body"><p><strong>Настаняване:</strong> след 14:00 ч.</p><p><strong>Освобождаване:</strong> до 11:00 ч.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>02</span><h3>Резервации и анулации</h3></div><div class="rule-body"><p>Резервацията се счита за потвърдена след заплащане на договорения депозит в размер на 1 нощувка.</p><p><strong>Безплатна анулация:</strong> до 14 дни преди пристигане.</p><p>При анулация след този срок или при неявяване внесената сума не се възстановява.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>03</span><h3>Домашни любимци и пушене</h3></div><div class="rule-body"><p>Домашни любимци се допускат само при предварителна уговорка.</p><p>Пушенето е напълно забранено във всички вътрешни помещения.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>04</span><h3>Материална отговорност</h3></div><div class="rule-body"><p>При настаняване се предоставя депозит за щети в размер на <strong>200 €</strong>, който се възстановява при напускане, ако не са установени щети.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>05</span><h3>Безопасност</h3></div><div class="rule-body"><p>Всяка къща е оборудвана с пожарогасител.</p><p>Не оставяйте деца без надзор.</p><p>Използването на лични отоплителни или готварски уреди е напълно забранено.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>06</span><h3>Външни посетители</h3></div><div class="rule-body"><p>Посещения от лица, които не са част от резервацията, са напълно забранени.</p></div></article>
+<details class="rule-card reveal" open=""><summary><span>01</span>Настаняване и напускане</summary><div><p><strong>Настаняване:</strong> след 14:00 ч.</p><p><strong>Освобождаване:</strong> до 11:00 ч.</p></div></details>
+<details class="rule-card reveal"><summary><span>02</span>Резервации и анулации</summary><div><p>Резервацията се счита за потвърдена след заплащане на договорения депозит в размер на 1 нощувка.</p><p><strong>Безплатна анулация:</strong> до 14 дни преди пристигане.</p><p>При анулация след този срок или при неявяване внесената сума не се възстановява.</p></div></details>
+<details class="rule-card reveal"><summary><span>03</span>Домашни любимци и пушене</summary><div><p>Домашни любимци се допускат само при предварителна уговорка.</p><p>Пушенето е напълно забранено във всички вътрешни помещения.</p></div></details>
+<details class="rule-card reveal"><summary><span>04</span>Материална отговорност</summary><div><p>При настаняване се предоставя депозит за щети в размер на <strong>200 €</strong>, който се възстановява при напускане, ако не са установени щети.</p></div></details>
+<details class="rule-card reveal"><summary><span>05</span>Безопасност</summary><div><p>Всяка къща е оборудвана с пожарогасител.</p><p>Не оставяйте деца без надзор.</p><p>Използването на лични отоплителни или готварски уреди е напълно забранено.</p></div></details>
+<details class="rule-card reveal"><summary><span>06</span>Външни посетители</summary><div><p>Посещения от лица, които не са част от резервацията, са напълно забранени.</p></div></details>
 </div>
 </section>
-
 <section aria-label="Финален призив за резервация" class="final-cta section reveal">
 <div class="final-cta-card">
 <span class="section-kicker">YOUR ESCAPE</span>

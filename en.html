@@ -1,12 +1,4 @@
 <!doctype html>
-<!DOCTYPE html>
-
-<!DOCTYPE html>
-
-<!DOCTYPE html>
-
-<!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -24,55 +16,15 @@
 <link href="styles.css" rel="stylesheet"/>
 <script defer="" src="config.js"></script>
 <script defer="" src="script.js"></script>
-<style>
-    /* Houses section headline: longer copy, slightly smaller size + gold accent */
-    .houses .section-head h2.headline-tight {
-      font-size: clamp(2.4rem, 4.2vw, 4.2rem);
-      line-height: 1.15;
-    }
 
-    em.gold {
-      font-style: italic;
-      color: #cbb075;
-    }
-
-    /* v11 desktop-only polish: mobile rules are intentionally untouched */
-    @media (min-width: 1025px) {
-      .hero-booking-teaser {
-        display: none !important;
-      }
-
-      .gallery-grid-rich .gallery-item {
-        background: #07150f;
-      }
-
-      .gallery-grid-rich .gallery-item img {
-        object-fit: contain !important;
-        object-position: center center !important;
-        transform: none !important;
-      }
-
-      .gallery-grid-rich .gallery-item:hover img {
-        transform: none !important;
-      }
-
-      .cinema-card img {
-        object-fit: cover !important;
-        object-position: center 48% !important;
-      }
-    }
-  </style>
 </head>
 <body>
 <div aria-hidden="true" class="scroll-progress"><span></span></div>
 <div aria-hidden="true" class="noise"></div>
 <div class="top-contact-bar">
 <div class="top-contact-left">
-<span class="contact-label">Contact:</span>
-<a aria-label="Contact phone" class="top-contact-link top-phone" href="tel:+359885624476">+359 (0)88/562 4476</a>
-<span class="contact-sep" aria-hidden="true">·</span>
-<span class="mobile-contact-break" aria-hidden="true"></span>
-<a aria-label="Contact email" class="top-contact-link top-email" href="mailto:sonikwebco@gmail.com">sonikwebco@gmail.com</a>
+<a aria-label="Contact phone" class="top-contact-link" href="tel:+359885624476">+359 (0)88/562 4476</a>
+<a class="top-contact-link top-email" href="mailto:sonikwebco@gmail.com">sonikwebco@gmail.com</a>
 <div aria-label="Language selection" class="language-switch">
 <a class="" href="index.html" lang="bg">BG</a>
 <span>/</span>
@@ -129,10 +81,10 @@
 <main>
 <section aria-label="WOODRA A-FRAME" class="hero" id="hero">
 <div aria-hidden="true" class="hero-slideshow">
-<img alt="" class="hero-slide active" fetchpriority="high" src="houses-pool.webp"/>
-<img alt="" class="hero-slide" src="pool-sunset.webp"/>
-<img alt="" class="hero-slide" src="night-exterior.webp"/>
-<img alt="" class="hero-slide" src="aerial.webp"/>
+<img alt="" class="hero-slide active hero-sunset" fetchpriority="high" src="IMG_0170.jpg"/>
+<img alt="" class="hero-slide hero-stars" src="IMG_0173.jpg"/>
+<img alt="" class="hero-slide hero-houses" src="IMG_0174.jpg"/>
+<img alt="" class="hero-slide hero-mountain" src="IMG_0178.jpg"/>
 </div>
 <div aria-hidden="true" class="hero-slide-dots"><span class="active"></span><span></span><span></span><span></span></div>
 <div class="hero-shade"></div>
@@ -169,7 +121,7 @@
 </div>
 </div>
 <div class="cinema-card reveal" data-parallax-card="">
-<img alt="WOODRA A-FRAME at night" loading="lazy" src="night-exterior.webp"/>
+<img alt="WOODRA A-FRAME under the stars" loading="lazy" src="IMG_0173.jpg"/>
 </div>
 <div class="signature-strip reveal">
 <div class="signature-copy">
@@ -197,7 +149,7 @@
 </div>
 <div class="house-experience reveal" data-view="both" id="house-experience">
 <div class="house-photo">
-<img alt="The two WOODRA A-Frame houses" id="house-image" loading="lazy" src="houses-pool.webp"/>
+<img alt="The two WOODRA A-Frame houses" id="house-image" loading="lazy" src="IMG_0174.jpg"/>
 <div class="photo-chip" id="house-chip">TWO HOUSES</div>
 </div>
 <div class="house-details">
@@ -210,7 +162,7 @@
 <div><strong>4</strong><span>bathrooms</span></div>
 <div><strong>1</strong><span>traditional dining room</span></div>
 <div><strong>16</strong><span>max. guests</span></div>
-<div class="spec-wide terrace-spec"><strong>Panoramic terrace with a view of Kom Peak</strong></div>
+<div class="spec-wide"><strong>Kom Peak</strong><span>panoramic terrace view</span></div>
 </div>
 <a class="text-link" href="#booking">Book both houses <span>↗</span></a>
 </div>
@@ -241,7 +193,7 @@
 </div>
 </article>
 <article class="amenity-card reveal">
-<img alt="Evening by the pool" loading="lazy" src="pool-night.webp"/>
+<img alt="BBQ with mountain view" loading="lazy" src="IMG_0177.jpg"/>
 <div class="amenity-content">
 <span>03</span>
 <h3>Fire pit &amp; BBQ</h3>
@@ -256,8 +208,8 @@
 <p>A garden, grass and plenty of room for children to run and play.</p>
 </div>
 </article>
-<article class="amenity-card amenity-card-text reveal">
-<div class="amenity-symbol">≈</div>
+<article class="amenity-card reveal"><img alt="The river in the WOODRA yard" loading="lazy" src="IMG_0176.jpg"/>
+
 <div class="amenity-content">
 <span>05</span>
 <h3>River in the garden</h3>
@@ -274,23 +226,11 @@
 </article>
 </div>
 <article class="panorama-feature reveal">
-<img alt="Panoramic terrace with a view of Kom Peak" loading="lazy" src="terrace.webp"/>
+<img alt="Panoramic terrace with a view of Kom Peak" loading="lazy" src="IMG_0178.jpg"/>
 <div class="panorama-overlay"></div>
 <div class="panorama-copy"><span>THE VIEW</span><h3>Panoramic terrace<br/>with a view of <em>Kom Peak.</em></h3></div>
 </article>
-<div class="breakfast-card reveal">
-<div class="breakfast-card-head">
-<span class="breakfast-icon">☕</span>
-<div><span class="breakfast-eyebrow">ON REQUEST</span><strong>Traditional Bulgarian breakfast</strong><p>Choose one of three homemade options.</p></div>
-<div class="breakfast-price"><strong>12 €</strong><span>per person</span></div>
-</div>
-<div class="breakfast-options">
-<div><span>01</span><p>Mekitsi with homemade jam and cheese</p></div>
-<div><span>02</span><p>Homemade banitsa with cheese</p></div>
-<div><span>03</span><p>French toast with homemade jam and cheese</p></div>
-</div>
-<a href="#booking">Add to your stay →</a>
-</div>
+<div class="breakfast-card breakfast-card-photo reveal"><div class="breakfast-photo"><img alt="Traditional breakfast at WOODRA with a mountain view" loading="lazy" src="IMG_0172.jpg"/></div><div class="breakfast-body"><div class="breakfast-card-head"><span class="breakfast-icon">☕</span><div><span class="breakfast-eyebrow">ON REQUEST</span><strong>Traditional Bulgarian breakfast</strong><p>A homemade start to the day with a mountain view.</p></div><div class="breakfast-price"><strong>12 €</strong><span>per person</span></div></div><div class="breakfast-options"><div><span>01</span><p>Mekitsi with homemade jam and cheese</p></div><div><span>02</span><p>Homemade banitsa with cheese</p></div><div><span>03</span><p>French toast with homemade jam and cheese</p></div></div><a href="#booking">Add to your stay →</a></div></div>
 </section>
 <section class="interior section">
 <div class="interior-grid">
@@ -327,22 +267,7 @@
 <h2>Scenes from WOODRA.</h2>
 </div>
 </div>
-<div class="gallery-grid gallery-grid-rich">
-<div class="gallery-video-item wide reveal">
-<video aria-label="WOODRA A-FRAME video" controls="" playsinline="" poster="hero-poster.jpg" preload="metadata">
-<source src="woodra-03.mp4" type="video/mp4"/>
-</video>
-<span>WOODRA · VIDEO</span>
-</div>
-<button aria-label="Open image" class="gallery-item wide reveal" data-lightbox="night-exterior.webp"><img alt="WOODRA at night" loading="lazy" src="night-exterior.webp"/></button>
-<button aria-label="Open image" class="gallery-item reveal" data-lightbox="houses-pool.webp"><img alt="The two houses and pool" loading="lazy" src="houses-pool.webp"/></button>
-<button aria-label="Open image" class="gallery-item reveal" data-lightbox="pool-sunset.webp"><img alt="Pool at sunset" loading="lazy" src="pool-sunset.webp"/></button>
-<button aria-label="Open image" class="gallery-item tall aframe reveal" data-lightbox="aerial.webp"><img alt="Aerial view of WOODRA" loading="lazy" src="aerial.webp"/></button>
-<button aria-label="Open image" class="gallery-item reveal" data-lightbox="terrace.webp"><img alt="Terrace and loungers" loading="lazy" src="terrace.webp"/></button>
-<button aria-label="Open image" class="gallery-item reveal" data-lightbox="fruit-relax.webp"><img alt="Fruit and relaxation area" loading="lazy" src="fruit-relax.webp"/></button>
-<button aria-label="Open image" class="gallery-item wide reveal" data-lightbox="pool-night.webp"><img alt="Evening by the pool" loading="lazy" src="pool-night.webp"/></button>
-<button aria-label="Open image" class="gallery-item reveal" data-lightbox="exterior-close.webp"><img alt="A-Frame exterior" loading="lazy" src="exterior-close.webp"/></button>
-</div>
+<div class="gallery-grid gallery-grid-rich"><button aria-label="Open image" class="gallery-item reveal wide" data-lightbox="IMG_0173.jpg" type="button"><img alt="Night above WOODRA" loading="lazy" src="IMG_0173.jpg"/></button><div class="gallery-video-item wide reveal"><video aria-label="WOODRA A-FRAME video" controls="" playsinline="" poster="hero-poster.jpg" preload="metadata"><source src="woodra-03.mp4" type="video/mp4"/></video><span>WOODRA · VIDEO</span></div><button aria-label="Open image" class="gallery-item reveal wide" data-lightbox="IMG_0170.jpg" type="button"><img alt="Sunset beside the A-frame" loading="lazy" src="IMG_0170.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0174.jpg" type="button"><img alt="The two A-frame houses" loading="lazy" src="IMG_0174.jpg"/></button><button aria-label="Open image" class="gallery-item reveal tall" data-lightbox="IMG_0178.jpg" type="button"><img alt="Mountain view" loading="lazy" src="IMG_0178.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0172.jpg" type="button"><img alt="Homemade breakfast with a view" loading="lazy" src="IMG_0172.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0177.jpg" type="button"><img alt="BBQ with a mountain view" loading="lazy" src="IMG_0177.jpg"/></button><button aria-label="Open image" class="gallery-item reveal wide" data-lightbox="IMG_0176.jpg" type="button"><img alt="The river in the yard" loading="lazy" src="IMG_0176.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0175.jpg" type="button"><img alt="The WOODRA kitchen" loading="lazy" src="IMG_0175.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0171.jpg" type="button"><img alt="Heated pool detail" loading="lazy" src="IMG_0171.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="terrace.webp" type="button"><img alt="Terrace and relaxation area" loading="lazy" src="terrace.webp"/></button><button aria-label="Open image" class="gallery-item reveal wide" data-lightbox="pool-night.webp" type="button"><img alt="Evening by the pool" loading="lazy" src="pool-night.webp"/></button></div>
 </section>
 <section aria-label="WOODRA atmosphere" class="film-strip">
 <video autoplay="" loop="" muted="" playsinline="" poster="aerial.webp" preload="metadata">
@@ -394,12 +319,12 @@
 <h2>Please take a moment to read our<br/><em>house rules and stay conditions.</em></h2>
 </div>
 <div class="rules-grid">
-<article class="rule-card reveal"><div class="rule-card-title"><span>01</span><h3>Check-in &amp; check-out</h3></div><div class="rule-body"><p><strong>Check-in:</strong> after 14:00.</p><p><strong>Check-out:</strong> by 11:00.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>02</span><h3>Reservations &amp; cancellations</h3></div><div class="rule-body"><p>A reservation is confirmed once the agreed deposit equal to 1 night has been paid.</p><p><strong>Free cancellation:</strong> up to 14 days before arrival.</p><p>For cancellations after this period or in case of no-show, the paid amount is non-refundable.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>03</span><h3>Pets &amp; smoking</h3></div><div class="rule-body"><p>Pets are allowed only by prior arrangement.</p><p>Smoking is strictly prohibited in all indoor areas.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>04</span><h3>Damage deposit</h3></div><div class="rule-body"><p>A damage deposit of <strong>€200</strong> is required at check-in and refunded at departure if no damage is found.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>05</span><h3>Safety</h3></div><div class="rule-body"><p>Each house is equipped with a fire extinguisher.</p><p>Do not leave children unattended.</p><p>The use of personal heating or cooking appliances is strictly prohibited.</p></div></article>
-<article class="rule-card reveal"><div class="rule-card-title"><span>06</span><h3>Outside visitors</h3></div><div class="rule-body"><p>Visits from people who are not included in the reservation are strictly prohibited.</p></div></article>
+<details class="rule-card reveal" open=""><summary><span>01</span>Check-in &amp; check-out</summary><div><p><strong>Check-in:</strong> after 14:00.</p><p><strong>Check-out:</strong> by 11:00.</p></div></details>
+<details class="rule-card reveal"><summary><span>02</span>Reservations &amp; cancellations</summary><div><p>A reservation is confirmed once the agreed deposit equal to 1 night has been paid.</p><p><strong>Free cancellation:</strong> up to 14 days before arrival.</p><p>For cancellations after this period or in case of no-show, the paid amount is non-refundable.</p></div></details>
+<details class="rule-card reveal"><summary><span>03</span>Pets &amp; smoking</summary><div><p>Pets are allowed only by prior arrangement.</p><p>Smoking is strictly prohibited in all indoor areas.</p></div></details>
+<details class="rule-card reveal"><summary><span>04</span>Damage deposit</summary><div><p>A damage deposit of <strong>€200</strong> is required at check-in and refunded at departure if no damage is found.</p></div></details>
+<details class="rule-card reveal"><summary><span>05</span>Safety</summary><div><p>Each house is equipped with a fire extinguisher.</p><p>Do not leave children unattended.</p><p>The use of personal heating or cooking appliances is strictly prohibited.</p></div></details>
+<details class="rule-card reveal"><summary><span>06</span>Outside visitors</summary><div><p>Visits from people who are not included in the reservation are strictly prohibited.</p></div></details>
 </div>
 </section>
 <section aria-label="Final booking call to action" class="final-cta section reveal">
