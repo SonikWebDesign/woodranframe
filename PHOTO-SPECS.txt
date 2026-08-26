@@ -1,0 +1,45 @@
+WOODRA A-FRAME · PHOTO DELIVERY SPEC
+
+Ask the photographer to provide the ORIGINAL exported files, not WhatsApp/Messenger copies.
+
+COLOR / FORMAT
+- JPEG (.jpg), quality 90–95%, sRGB color profile.
+- No HEIC for the final delivery.
+- No text, logos or watermarks burned into the image.
+- Keep a natural edit; avoid crushed blacks and very heavy filters.
+- We can make WebP/AVIF web versions later. The photographer should give us the high-quality masters.
+
+RESOLUTION
+- Keep full-resolution originals, ideally 4000–6000 px on the long edge.
+- Do not deliver anything important below 2400 px on the long edge.
+
+HERO / WIDE WEBSITE PHOTOS
+- Landscape 16:9 or 3:2.
+- Minimum: 2560×1440 px.
+- Ideal website master: 3200×1800 px or 3600×2025 px.
+- For each key scene, also shoot a vertical version for phones.
+
+MOBILE / VERTICAL COMPANION PHOTOS
+- 4:5 or 3:4.
+- Minimum: 1600×2000 px.
+- Ideal: 2160×2700 px or larger.
+
+GALLERY / INTERIOR / DETAILS
+- Landscape 3:2 or 4:3, long edge 3000–4500 px.
+- Portrait details 4:5, around 2400×3000 px or larger.
+
+VERY IMPORTANT FOR CROPPING
+For the 4–6 strongest scenes, shoot BOTH landscape and portrait versions:
+1. Both A-frame houses together
+2. Sunset exterior
+3. Pool + houses
+4. Mountain / terrace view
+5. Night exterior / stars
+6. Breakfast or lifestyle terrace scene
+
+Keep the main subject within the central ~65% of the frame and leave a little breathing room around roofs, people and furniture. This lets us crop for desktop, tablet and mobile without cutting the important part.
+
+DELIVERY
+- Originals via Drive/Dropbox/WeTransfer, not chat apps.
+- Keep EXIF/orientation correct.
+- Do not pre-crop all images to one ratio. Give us the landscape and portrait selects separately.

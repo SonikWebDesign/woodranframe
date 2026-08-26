@@ -24,7 +24,6 @@
 <div class="top-contact-bar">
 <div class="top-contact-left">
 <a aria-label="Contact phone" class="top-contact-link" href="tel:+359885624476">+359 (0)88/562 4476</a>
-<a class="top-contact-link top-email" href="mailto:sonikwebco@gmail.com">sonikwebco@gmail.com</a>
 <div aria-label="Language selection" class="language-switch">
 <a class="" href="index.html" lang="bg">BG</a>
 <span>/</span>
@@ -32,9 +31,10 @@
 </div>
 </div>
 <div aria-label="Social media" class="top-socials">
-<span aria-label="Facebook – link pending" class="top-social-link is-disabled" title="Facebook – link pending">
+<a class="top-contact-link top-email-right" href="mailto:sonikwebco@gmail.com">sonikwebco@gmail.com</a>
+<a aria-label="WOODRA A-FRAME on Facebook" class="top-social-link" href="https://www.facebook.com/share/19hZjLLN1f/?mibextid=wwXIfr" rel="noopener" target="_blank">
 <svg aria-hidden="true" viewbox="0 0 24 24"><path d="M14.5 8H17V4.5c-.43-.06-1.91-.18-3.66-.18-3.62 0-6.1 2.21-6.1 6.28V14H3v3.92h4.24V24h5.2v-6.08h4.08L17.17 14h-4.73v-3.01c0-1.13.31-1.9 2.06-1.9V8Z"></path></svg>
-</span>
+</a>
 <a aria-label="WOODRA A-FRAME on Instagram" class="top-social-link" href="https://www.instagram.com/woodra.aframe/" rel="noopener" target="_blank">
 <svg aria-hidden="true" viewbox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm10.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"></path></svg>
 </a>
@@ -62,6 +62,7 @@
 <a href="#around">Nearby</a>
 <a href="#location">Location</a><a href="#rules">House Rules</a>
 <a href="https://www.instagram.com/woodra.aframe/" rel="noopener" target="_blank">Instagram ↗</a>
+<a href="https://www.facebook.com/share/19hZjLLN1f/?mibextid=wwXIfr" rel="noopener" target="_blank">Facebook ↗</a>
 <div class="mobile-contact-mini"><a href="tel:+359885624476">+359 (0)88/562 4476</a><a href="mailto:sonikwebco@gmail.com">sonikwebco@gmail.com</a><span><a class="" href="index.html">BG</a> / <a aria-current="page" class="active" href="en.html">EN</a></span></div><a href="#booking">Book now</a>
 </div>
 <div aria-label="Section navigation" class="floating-nav">
@@ -81,10 +82,22 @@
 <main>
 <section aria-label="WOODRA A-FRAME" class="hero" id="hero">
 <div aria-hidden="true" class="hero-slideshow">
-<img alt="" class="hero-slide active hero-sunset" fetchpriority="high" src="IMG_0170.jpg"/>
-<img alt="" class="hero-slide hero-stars" src="IMG_0173.jpg"/>
-<img alt="" class="hero-slide hero-houses" src="IMG_0174.jpg"/>
-<img alt="" class="hero-slide hero-mountain" src="IMG_0178.jpg"/>
+<picture class="hero-slide active hero-sunset">
+<source media="(min-width: 1025px)" srcset="pool-sunset.webp"/>
+<img alt="" fetchpriority="high" src="IMG_0170.jpg"/>
+</picture>
+<picture class="hero-slide hero-stars">
+<source media="(min-width: 1025px)" srcset="night-exterior.webp"/>
+<img alt="" src="IMG_0173.jpg"/>
+</picture>
+<picture class="hero-slide hero-houses">
+<source media="(min-width: 1025px)" srcset="houses-pool.webp"/>
+<img alt="" src="IMG_0174.jpg"/>
+</picture>
+<picture class="hero-slide hero-mountain">
+<source media="(min-width: 1025px)" srcset="aerial.webp"/>
+<img alt="" src="IMG_0178.jpg"/>
+</picture>
 </div>
 <div aria-hidden="true" class="hero-slide-dots"><span class="active"></span><span></span><span></span><span></span></div>
 <div class="hero-shade"></div>
@@ -107,7 +120,7 @@
 </div>
 <div class="hero-meta reveal">
 <div><strong>2</strong><span>A-Frame villas</span></div>
-<div><strong>∞</strong><span>mountain view</span></div>
+<div><strong>∞</strong><span>panoramic terrace towards Mt. Kom</span></div>
 <div><strong>1</strong><span>pool</span></div>
 <div><strong>4</strong><span>bathrooms · 4 parking spaces</span></div>
 </div>
@@ -162,7 +175,7 @@
 <div><strong>4</strong><span>bathrooms</span></div>
 <div><strong>1</strong><span>traditional dining room</span></div>
 <div><strong>16</strong><span>max. guests</span></div>
-<div class="spec-wide"><strong>Kom Peak</strong><span>panoramic terrace view</span></div>
+<div class="spec-wide"><strong>Kom Peak</strong><span>panoramic terrace towards Mt. Kom</span></div>
 </div>
 <a class="text-link" href="#booking">Book both houses <span>↗</span></a>
 </div>
@@ -268,6 +281,23 @@
 </div>
 </div>
 <div class="gallery-grid gallery-grid-rich"><button aria-label="Open image" class="gallery-item reveal wide" data-lightbox="IMG_0173.jpg" type="button"><img alt="Night above WOODRA" loading="lazy" src="IMG_0173.jpg"/></button><div class="gallery-video-item wide reveal"><video aria-label="WOODRA A-FRAME video" controls="" playsinline="" poster="hero-poster.jpg" preload="metadata"><source src="woodra-03.mp4" type="video/mp4"/></video><span>WOODRA · VIDEO</span></div><button aria-label="Open image" class="gallery-item reveal wide" data-lightbox="IMG_0170.jpg" type="button"><img alt="Sunset beside the A-frame" loading="lazy" src="IMG_0170.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0174.jpg" type="button"><img alt="The two A-frame houses" loading="lazy" src="IMG_0174.jpg"/></button><button aria-label="Open image" class="gallery-item reveal tall" data-lightbox="IMG_0178.jpg" type="button"><img alt="Mountain view" loading="lazy" src="IMG_0178.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0172.jpg" type="button"><img alt="Homemade breakfast with a view" loading="lazy" src="IMG_0172.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0177.jpg" type="button"><img alt="BBQ with a mountain view" loading="lazy" src="IMG_0177.jpg"/></button><button aria-label="Open image" class="gallery-item reveal wide" data-lightbox="IMG_0176.jpg" type="button"><img alt="The river in the yard" loading="lazy" src="IMG_0176.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0175.jpg" type="button"><img alt="The WOODRA kitchen" loading="lazy" src="IMG_0175.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="IMG_0171.jpg" type="button"><img alt="Heated pool detail" loading="lazy" src="IMG_0171.jpg"/></button><button aria-label="Open image" class="gallery-item reveal" data-lightbox="terrace.webp" type="button"><img alt="Terrace and relaxation area" loading="lazy" src="terrace.webp"/></button><button aria-label="Open image" class="gallery-item reveal wide" data-lightbox="pool-night.webp" type="button"><img alt="Evening by the pool" loading="lazy" src="pool-night.webp"/></button></div>
+<div class="mobile-gallery" aria-label="Mobile gallery">
+  <div class="mobile-gallery-slider" data-mobile-gallery>
+    <div class="mobile-gallery-stage">
+      <button class="mobile-gallery-slide active" type="button" data-lightbox="IMG_0173.jpg" aria-label="Open night photo"><img src="IMG_0173.jpg" alt="Night above WOODRA" loading="lazy"/><span>NIGHT AT WOODRA</span></button>
+      <button class="mobile-gallery-slide" type="button" data-lightbox="IMG_0170.jpg" aria-label="Open sunset photo"><img src="IMG_0170.jpg" alt="Sunset beside the A-frame" loading="lazy"/><span>SUNSET</span></button>
+      <button class="mobile-gallery-slide" type="button" data-lightbox="IMG_0174.jpg" aria-label="Open photo of both houses"><img src="IMG_0174.jpg" alt="The two A-frame houses" loading="lazy"/><span>THE TWO A-FRAMES</span></button>
+      <button class="mobile-gallery-slide" type="button" data-lightbox="IMG_0178.jpg" aria-label="Open panoramic photo"><img src="IMG_0178.jpg" alt="Panoramic terrace towards Mt. Kom" loading="lazy"/><span>TOWARDS MT. KOM</span></button>
+    </div>
+    <div class="mobile-gallery-controls"><button class="mobile-gallery-arrow prev" type="button" aria-label="Previous image">←</button><div class="mobile-gallery-dots" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i></div><button class="mobile-gallery-arrow next" type="button" aria-label="Next image">→</button></div>
+  </div>
+  <div class="mobile-gallery-mosaic">
+    <button type="button" class="mobile-mosaic-item mosaic-wide" data-lightbox="IMG_0172.jpg" aria-label="Open breakfast photo"><img src="IMG_0172.jpg" alt="Homemade breakfast with a view" loading="lazy"/><span>MORNING</span></button>
+    <button type="button" class="mobile-mosaic-item mosaic-tall" data-lightbox="IMG_0177.jpg" aria-label="Open BBQ photo"><img src="IMG_0177.jpg" alt="BBQ with a mountain view" loading="lazy"/><span>OUTSIDE</span></button>
+    <button type="button" class="mobile-mosaic-item" data-lightbox="IMG_0175.jpg" aria-label="Open kitchen photo"><img src="IMG_0175.jpg" alt="The WOODRA kitchen" loading="lazy"/><span>INSIDE</span></button>
+  </div>
+  <div class="mobile-gallery-video"><video aria-label="WOODRA A-FRAME video" controls playsinline poster="hero-poster.jpg" preload="metadata"><source src="woodra-03.mp4" type="video/mp4"/></video><span>WOODRA · VIDEO</span></div>
+</div>
 </section>
 <section aria-label="WOODRA atmosphere" class="film-strip">
 <video autoplay="" loop="" muted="" playsinline="" poster="aerial.webp" preload="metadata">
@@ -306,6 +336,7 @@
 <div class="location-actions">
 <a class="button button-dark" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%B3%D1%80.%20%D0%91%D0%B5%D1%80%D0%BA%D0%BE%D0%B2%D0%B8%D1%86%D0%B0%2C%20%D1%83%D0%BB.%20%D0%95%D0%BB%D0%B8%D0%BD%20%D0%9F%D0%B5%D0%BB%D0%B8%D0%BD%2022" rel="noopener" target="_blank">Open in Google Maps ↗</a>
 <a aria-label="WOODRA A-FRAME on Instagram" class="instagram-pill" href="https://www.instagram.com/woodra.aframe/" rel="noopener" target="_blank">Instagram · @woodra.aframe ↗</a>
+<a aria-label="WOODRA A-FRAME on Facebook" class="instagram-pill facebook-pill" href="https://www.facebook.com/share/19hZjLLN1f/?mibextid=wwXIfr" rel="noopener" target="_blank">Facebook · WOODRA ↗</a>
 </div>
 </div>
 <div class="location-map reveal">
@@ -451,6 +482,7 @@
 <div class="footer-links">
 <a href="#location">Location</a>
 <a href="https://www.instagram.com/woodra.aframe/" rel="noopener" target="_blank">Instagram ↗</a>
+<a href="https://www.facebook.com/share/19hZjLLN1f/?mibextid=wwXIfr" rel="noopener" target="_blank">Facebook ↗</a>
 <a href="#booking">Booking</a>
 <a href="#rules">House Rules</a><a href="tel:+359885624476">+359 (0)88/562 4476</a></div>
 </div>

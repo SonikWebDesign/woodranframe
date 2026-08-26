@@ -124,14 +124,37 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
   const lightbox = $('#lightbox');
   const lightboxImage = $('#lightbox img');
-  $$('[data-lightbox]').forEach((item) => {
-    item.addEventListener('click', () => {
-      lightboxImage.src = item.dataset.lightbox;
-      lightbox.showModal();
-    });
+  document.addEventListener('click', (event) => {
+    const item = event.target.closest?.('[data-lightbox]');
+    if (!item || !lightbox || !lightboxImage) return;
+    lightboxImage.src = item.dataset.lightbox;
+    lightbox.showModal();
   });
   $('.lightbox-close')?.addEventListener('click', () => lightbox.close());
   lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });
+
+  $$('[data-mobile-gallery]').forEach((gallery) => {
+    const slides = $$('.mobile-gallery-slide', gallery);
+    const dots = $$('.mobile-gallery-dots i', gallery);
+    const prev = $('.mobile-gallery-arrow.prev', gallery);
+    const next = $('.mobile-gallery-arrow.next', gallery);
+    let index = 0;
+    let touchStartX = 0;
+    const show = (nextIndex) => {
+      if (!slides.length) return;
+      index = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    };
+    prev?.addEventListener('click', (e) => { e.stopPropagation(); show(index - 1); });
+    next?.addEventListener('click', (e) => { e.stopPropagation(); show(index + 1); });
+    gallery.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches?.[0]?.clientX || 0; }, { passive: true });
+    gallery.addEventListener('touchend', (e) => {
+      const delta = (e.changedTouches?.[0]?.clientX || 0) - touchStartX;
+      if (Math.abs(delta) > 45) show(index + (delta < 0 ? 1 : -1));
+    }, { passive: true });
+    show(0);
+  });
 
 
   const config = window.WOODRA_CONFIG || {};
