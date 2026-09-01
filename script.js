@@ -780,7 +780,7 @@ function initWoodraInteriorSlider() {
     slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
     dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
   }
-  function restart() { clearInterval(timer); timer = setInterval(() => show(current + 1), 4600); }
+  function restart() { clearInterval(timer); timer = setInterval(() => show(current + 1), 7600); }
   prev?.addEventListener('click', () => { show(current - 1); restart(); });
   next?.addEventListener('click', () => { show(current + 1); restart(); });
   show(0); restart();
