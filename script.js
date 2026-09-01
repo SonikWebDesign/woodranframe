@@ -47,7 +47,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
   const houseData = {
     one: {
-      image: 'ext-close-house.jpg',
+      image: 'woodra-house-one.webp',
       alt: 'Една A-frame къща WOODRA',
       chip: 'ONE HOUSE',
       eyebrow: 'ПОДХОДЯЩО ЗА ПО-МАЛКА КОМПАНИЯ',
@@ -56,7 +56,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
       specs: [['3','спални'],['1','разтегателен диван'],['2','бани'],['1','механа']]
     },
     both: {
-      image: 'ext-front-wide.png',
+      image: 'woodra-houses-both.webp',
       alt: 'Двете A-frame къщи WOODRA',
       chip: 'BOTH HOUSES',
       eyebrow: 'ЦЯЛОТО WOODRA ЗА ВАШАТА КОМПАНИЯ',
@@ -707,51 +707,85 @@ window.addEventListener('resize', updateFloatingNav);
 
 window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches && document.documentElement.classList.add("reduced-motion");
 
+// v18 stable visual interactions
+function initWoodraHeroSlideshow() {
+  const slides = Array.from(document.querySelectorAll('.hero-slide'));
+  const dots = Array.from(document.querySelectorAll('.hero-slide-dots button'));
+  if (!slides.length) return;
+  let current = 0;
+  let timer;
+  const show = (i) => {
+    current = (i + slides.length) % slides.length;
+    slides.forEach((slide, idx) => slide.classList.toggle('active', idx === current));
+    dots.forEach((dot, idx) => dot.classList.toggle('active', idx === current));
+  };
+  const restart = () => {
+    clearInterval(timer);
+    timer = setInterval(() => show(current + 1), 5200);
+  };
+  dots.forEach((dot, idx) => dot.addEventListener('click', () => { show(idx); restart(); }));
+  show(0);
+  restart();
+}
 
-  // v17 hero slideshow and grouped gallery sliders
-  function initHeroSlideshow() {
-    const slides = Array.from(document.querySelectorAll('.hero-slide'));
-    const dots = Array.from(document.querySelectorAll('.hero-slide-dots span'));
-    if (!slides.length) return;
-    let current = 0;
-    const goTo = (index) => {
-      current = (index + slides.length) % slides.length;
-      slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
-    };
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-    setInterval(() => goTo(current + 1), 4800);
-  }
-
-  function initShowcaseSliders() {
-    document.querySelectorAll('[data-slider]').forEach((slider) => {
-      const track = slider.querySelector('.showcase-track');
-      const slides = Array.from(slider.querySelectorAll('.showcase-slide'));
-      const prev = slider.querySelector('.showcase-arrow.prev');
-      const next = slider.querySelector('.showcase-arrow.next');
-      const dotsWrap = slider.querySelector('.showcase-dots');
-      if (!track || slides.length < 2 || !dotsWrap) return;
-      let index = 0;
-      slides.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.setAttribute('aria-label', `Slide ${i + 1}`);
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => update(i));
-        dotsWrap.appendChild(dot);
-      });
-      const dots = Array.from(dotsWrap.querySelectorAll('button'));
-      const update = (i) => {
-        index = (i + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-        slides.forEach((slide, idx) => slide.classList.toggle('active', idx === index));
-        dots.forEach((dot, idx) => dot.classList.toggle('active', idx === index));
-      };
-      prev?.addEventListener('click', () => update(index - 1));
-      next?.addEventListener('click', () => update(index + 1));
-      update(0);
+function initWoodraShowcaseSliders() {
+  document.querySelectorAll('[data-slider]').forEach((slider) => {
+    const track = slider.querySelector('.showcase-track');
+    const slides = Array.from(slider.querySelectorAll('.showcase-slide'));
+    const prev = slider.querySelector('.showcase-arrow.prev');
+    const next = slider.querySelector('.showcase-arrow.next');
+    const dotsWrap = slider.querySelector('.showcase-dots');
+    if (!track || !slides.length || !dotsWrap) return;
+    let index = 0;
+    dotsWrap.innerHTML = '';
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      dot.addEventListener('click', () => update(i));
+      dotsWrap.appendChild(dot);
     });
-  }
+    const dots = Array.from(dotsWrap.children);
+    function update(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translate3d(-${index * 100}%,0,0)`;
+      slides.forEach((slide, idx) => slide.classList.toggle('active', idx === index));
+      dots.forEach((dot, idx) => dot.classList.toggle('active', idx === index));
+    }
+    prev?.addEventListener('click', () => update(index - 1));
+    next?.addEventListener('click', () => update(index + 1));
+    update(0);
+  });
+}
 
-  initHeroSlideshow();
-  initShowcaseSliders();
+function initWoodraInteriorSlider() {
+  const slides = Array.from(document.querySelectorAll('.interior-slide'));
+  const dotsWrap = document.querySelector('#interior-dots');
+  if (!slides.length || !dotsWrap) return;
+  const prev = document.querySelector('.interior-nav.prev');
+  const next = document.querySelector('.interior-nav.next');
+  let current = 0;
+  let timer;
+  dotsWrap.innerHTML = '';
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+    dot.addEventListener('click', () => { show(i); restart(); });
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+  function show(i) {
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+  }
+  function restart() { clearInterval(timer); timer = setInterval(() => show(current + 1), 4600); }
+  prev?.addEventListener('click', () => { show(current - 1); restart(); });
+  next?.addEventListener('click', () => { show(current + 1); restart(); });
+  show(0); restart();
+}
+
+initWoodraHeroSlideshow();
+initWoodraShowcaseSliders();
+initWoodraInteriorSlider();
