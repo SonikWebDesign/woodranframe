@@ -29,30 +29,6 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     observer.observe(el);
   });
 
-
-  // Cinematic hero slideshow. No zoom, only a slow cross-fade.
-  const heroSlides = $$('.hero-slide');
-  const heroDots = $$('.hero-slide-dots span');
-  let heroIndex = 0;
-  let heroTimer = null;
-  const showHeroSlide = (index) => {
-    if (!heroSlides.length) return;
-    heroIndex = (index + heroSlides.length) % heroSlides.length;
-    heroSlides.forEach((slide, i) => slide.classList.toggle('active', i === heroIndex));
-    heroDots.forEach((dot, i) => dot.classList.toggle('active', i === heroIndex));
-  };
-  const startHero = () => {
-    if (heroSlides.length < 2 || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-    clearInterval(heroTimer);
-    heroTimer = setInterval(() => showHeroSlide(heroIndex + 1), 6500);
-  };
-  showHeroSlide(0);
-  startHero();
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) clearInterval(heroTimer);
-    else startHero();
-  });
-
   const menuToggle = $('.menu-toggle');
   const mobileMenu = $('.mobile-menu');
   const closeMenu = () => {
@@ -71,22 +47,22 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
   const houseData = {
     one: {
-      image: 'exterior-close.webp',
+      image: 'ext-close-house.jpg',
       alt: 'Една A-frame къща WOODRA',
       chip: 'ONE HOUSE',
-      eyebrow: 'ОПЦИЯ ЗА ПО-МАЛКА КОМПАНИЯ',
-      title: 'Една A-frame къща.<br>Същият WOODRA ритъм.',
-      description: 'Три спални, един разтегателен диван, две бани и механа. Вариант за по-малка компания, която иска да преживее WOODRA в по-компактен формат.',
+      eyebrow: 'ПОДХОДЯЩО ЗА ПО-МАЛКА КОМПАНИЯ',
+      title: 'Вашата собствена<br>A-frame къща.',
+      description: 'Самостоятелна къща с три спални, един разтегателен диван, две бани и механа. Достъп до общите външни пространства и удобства.',
       specs: [['3','спални'],['1','разтегателен диван'],['2','бани'],['1','механа']]
     },
     both: {
-      image: 'IMG_0174.jpg',
+      image: 'ext-front-wide.png',
       alt: 'Двете A-frame къщи WOODRA',
-      chip: 'TWO HOUSES',
-      eyebrow: 'ЦЕЛИЯТ WOODRA ЗА ВАШАТА КОМПАНИЯ',
-      title: 'Целият комплекс.<br>Цялото преживяване.',
-      description: 'Шест спални, два разтегателни дивана, четири бани и две механи, свързани помежду си. Повече пространство, повече време заедно.',
-      specs: [['6','спални'],['2','разтегателни дивана'],['4','бани'],['2','механи']]
+      chip: 'BOTH HOUSES',
+      eyebrow: 'ЦЯЛОТО WOODRA ЗА ВАШАТА КОМПАНИЯ',
+      title: 'Двете къщи.<br>Едно общо място.',
+      description: 'Общо шест спални, два разтегателни дивана и четири бани. Двете пространства са свързани с топла връзка между механите.',
+      specs: [['6','спални'],['2','разтегателни дивана'],['4','бани'],['2','свързани пространства']]
     }
   };
 
@@ -124,37 +100,14 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
   const lightbox = $('#lightbox');
   const lightboxImage = $('#lightbox img');
-  document.addEventListener('click', (event) => {
-    const item = event.target.closest?.('[data-lightbox]');
-    if (!item || !lightbox || !lightboxImage) return;
-    lightboxImage.src = item.dataset.lightbox;
-    lightbox.showModal();
+  $$('[data-lightbox]').forEach((item) => {
+    item.addEventListener('click', () => {
+      lightboxImage.src = item.dataset.lightbox;
+      lightbox.showModal();
+    });
   });
   $('.lightbox-close')?.addEventListener('click', () => lightbox.close());
   lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });
-
-  $$('[data-mobile-gallery]').forEach((gallery) => {
-    const slides = $$('.mobile-gallery-slide', gallery);
-    const dots = $$('.mobile-gallery-dots i', gallery);
-    const prev = $('.mobile-gallery-arrow.prev', gallery);
-    const next = $('.mobile-gallery-arrow.next', gallery);
-    let index = 0;
-    let touchStartX = 0;
-    const show = (nextIndex) => {
-      if (!slides.length) return;
-      index = (nextIndex + slides.length) % slides.length;
-      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-    };
-    prev?.addEventListener('click', (e) => { e.stopPropagation(); show(index - 1); });
-    next?.addEventListener('click', (e) => { e.stopPropagation(); show(index + 1); });
-    gallery.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches?.[0]?.clientX || 0; }, { passive: true });
-    gallery.addEventListener('touchend', (e) => {
-      const delta = (e.changedTouches?.[0]?.clientX || 0) - touchStartX;
-      if (Math.abs(delta) > 45) show(index + (delta < 0 ? 1 : -1));
-    }, { passive: true });
-    show(0);
-  });
 
 
   const config = window.WOODRA_CONFIG || {};
@@ -215,7 +168,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     viewMonth: startOfMonth(today),
     selectedStart: null,
     selectedEnd: null,
-    houseMode: 'both',
+    houseMode: 'one',
     house1Busy: new Set(),
     house2Busy: new Set(),
     liveAvailability: false,
@@ -608,7 +561,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
   });
 
 
-const navSections = ['hero','intro','houses','amenities','gallery','around','location','booking']
+const navSections = ['hero','intro','houses','pricing','amenities','gallery','around','events','location','booking']
   .map(id => document.getElementById(id))
   .filter(Boolean);
 const prevSectionButton = $('#section-prev');
@@ -680,7 +633,7 @@ window.addEventListener('resize', updateFloatingNav);
     if (successCopy) successCopy.textContent = `${data.dates || ''} · ${data.houseLabel || ''}. Проверете имейла си за стъпките за депозит.`;
     if (bookingReference) bookingReference.textContent = `№ ${data.reference || ''}`;
     form.reset();
-    setHouseMode('both');
+    setHouseMode('one');
     setSelectedRange(null, null);
     loadAvailability();
     successCard?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -753,3 +706,52 @@ window.addEventListener('resize', updateFloatingNav);
 
 
 window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches && document.documentElement.classList.add("reduced-motion");
+
+
+  // v17 hero slideshow and grouped gallery sliders
+  function initHeroSlideshow() {
+    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    const dots = Array.from(document.querySelectorAll('.hero-slide-dots span'));
+    if (!slides.length) return;
+    let current = 0;
+    const goTo = (index) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+    };
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    setInterval(() => goTo(current + 1), 4800);
+  }
+
+  function initShowcaseSliders() {
+    document.querySelectorAll('[data-slider]').forEach((slider) => {
+      const track = slider.querySelector('.showcase-track');
+      const slides = Array.from(slider.querySelectorAll('.showcase-slide'));
+      const prev = slider.querySelector('.showcase-arrow.prev');
+      const next = slider.querySelector('.showcase-arrow.next');
+      const dotsWrap = slider.querySelector('.showcase-dots');
+      if (!track || slides.length < 2 || !dotsWrap) return;
+      let index = 0;
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Slide ${i + 1}`);
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => update(i));
+        dotsWrap.appendChild(dot);
+      });
+      const dots = Array.from(dotsWrap.querySelectorAll('button'));
+      const update = (i) => {
+        index = (i + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        slides.forEach((slide, idx) => slide.classList.toggle('active', idx === index));
+        dots.forEach((dot, idx) => dot.classList.toggle('active', idx === index));
+      };
+      prev?.addEventListener('click', () => update(index - 1));
+      next?.addEventListener('click', () => update(index + 1));
+      update(0);
+    });
+  }
+
+  initHeroSlideshow();
+  initShowcaseSliders();
