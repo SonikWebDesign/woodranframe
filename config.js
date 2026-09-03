@@ -4,7 +4,7 @@ window.WOODRA_CONFIG = Object.freeze({
   singleHouseMaxGuests: 8,
   availabilityMonthsAhead: 18,
   blockedRanges: Object.freeze([
-    Object.freeze({ from: '2026-09-02', to: '2026-09-14' }),
+    Object.freeze({ from: '2026-09-02', to: '2026-09-13' }),
     Object.freeze({ from: '2026-12-30', to: '2027-01-02' })
   ])
 });
