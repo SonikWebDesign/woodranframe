@@ -15,8 +15,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="styles.css?v=20260903-hero3" rel="stylesheet"/>
 <style id="woodra-mobile-hero-v4">
-/* WOODRA MOBILE HERO V4 — intentionally inline to bypass stale CSS caches. */
+/* WOODRA MOBILE V5 — hero and centered booking header button. */
 @media (max-width:900px){
+  .site-header{grid-template-columns:auto minmax(0,1fr) auto!important;gap:10px!important}
+  .site-header .brand{grid-column:1!important}
+  .site-header .nav-cta{display:inline-flex!important;grid-column:2!important;justify-self:center!important;align-items:center!important;justify-content:center!important;min-height:39px!important;padding:9px 14px!important;border:1px solid rgba(230,195,124,.9)!important;border-radius:999px!important;background:var(--wood-light)!important;color:#07150f!important;box-shadow:0 10px 26px rgba(211,176,108,.22)!important;backdrop-filter:none!important;font-size:8.5px!important;font-weight:900!important;line-height:1!important;letter-spacing:.1em!important;white-space:nowrap!important}
+  .site-header .menu-toggle{grid-column:3!important}
   .hero{min-height:0!important;height:auto!important;overflow:hidden!important;background:#07150f!important}
   .hero-slideshow{position:relative!important;inset:auto!important;width:calc(100% - 24px)!important;height:clamp(300px,92vw,430px)!important;margin:82px 12px 0!important;overflow:hidden!important;border:1px solid rgba(211,176,108,.52)!important;border-radius:15px!important;box-shadow:0 18px 44px rgba(0,0,0,.3),0 0 0 4px rgba(211,176,108,.045)!important;background:#050e0a!important}
   .hero-slide img{width:100%!important;height:100%!important;padding:0!important;object-fit:contain!important;object-position:center!important;transform:none!important;background:#050e0a!important}
@@ -31,6 +35,17 @@
   .hero-actions .button{min-height:43px!important;padding:10px 8px!important;font-size:9px!important}
   .hero-meta strong{font-size:21px!important}.hero-meta span{font-size:7px!important}
 }
+@media(max-width:390px){
+  .site-header{padding-left:12px!important;padding-right:12px!important;gap:8px!important}
+  .site-header .brand,.site-header .brand img{width:96px!important}
+  .site-header .nav-cta{min-height:37px!important;padding:8px 11px!important;font-size:7.5px!important}
+  .site-header .menu-toggle{width:43px!important;height:43px!important}
+}
+</style>
+<style id="woodra-analytics-consent-styles">
+.woodra-cookie-consent{position:fixed;z-index:1300;left:20px;bottom:20px;width:min(430px,calc(100vw - 40px));padding:18px;border:1px solid rgba(211,176,108,.45);border-radius:16px;background:rgba(5,18,12,.97);color:#f5eee0;box-shadow:0 22px 65px rgba(0,0,0,.4);backdrop-filter:blur(16px)}
+.woodra-cookie-consent[hidden]{display:none!important}.woodra-cookie-consent strong{display:block;margin-bottom:7px;font-family:var(--serif);font-size:22px;font-weight:500;color:var(--wood-light)}.woodra-cookie-consent p{margin:0;color:rgba(245,238,224,.72);font-size:11px;line-height:1.65}.woodra-cookie-actions{display:flex;gap:8px;margin-top:14px}.woodra-cookie-actions button{flex:1;min-height:40px;padding:9px 12px;border:1px solid rgba(211,176,108,.34);border-radius:999px;background:transparent;color:#f5eee0;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.woodra-cookie-actions .accept{background:var(--wood-light);color:#07150f}
+@media(max-width:720px){.woodra-cookie-consent{left:12px;right:12px;bottom:12px;width:auto;padding:15px}.woodra-cookie-consent strong{font-size:19px}.woodra-cookie-actions button{font-size:8px}}
 </style>
 <script defer="" src="config.js?v=20260903-hero3"></script>
 <script defer="" src="script.js?v=20260903-hero3"></script>
@@ -622,5 +637,46 @@
 <button aria-label="Close" class="lightbox-close" type="button">×</button>
 <img alt="WOODRA gallery" src=""/>
 </dialog>
+<aside aria-label="Analytics cookie settings" class="woodra-cookie-consent" hidden id="woodra-cookie-consent">
+<strong>Analytics cookies</strong>
+<p>We use Google Analytics to understand how the website is used and improve the experience. Analytics is activated only after you give consent.</p>
+<div class="woodra-cookie-actions">
+<button data-woodra-consent="denied" type="button">Necessary only</button>
+<button class="accept" data-woodra-consent="granted" type="button">Accept</button>
+</div>
+</aside>
+<script id="woodra-analytics-loader">
+(function(){
+  var measurementId='G-57471318KR';
+  var storageKey='woodra_analytics_consent_v1';
+  var banner=document.getElementById('woodra-cookie-consent');
+  var loaded=false;
+  function remember(value){try{localStorage.setItem(storageKey,value);}catch(ignore){}}
+  function read(){try{return localStorage.getItem(storageKey);}catch(ignore){return null;}}
+  function loadAnalytics(){
+    if(loaded)return;
+    loaded=true;
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+    window.gtag('js',new Date());
+    window.gtag('config',measurementId,{anonymize_ip:true});
+    var tag=document.createElement('script');
+    tag.async=true;
+    tag.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(measurementId);
+    document.head.appendChild(tag);
+  }
+  var saved=read();
+  if(saved==='granted')loadAnalytics();
+  else if(saved!=='denied'&&banner)banner.hidden=false;
+  if(banner)banner.addEventListener('click',function(event){
+    var button=event.target.closest('[data-woodra-consent]');
+    if(!button)return;
+    var choice=button.getAttribute('data-woodra-consent');
+    remember(choice);
+    banner.hidden=true;
+    if(choice==='granted')loadAnalytics();
+  });
+})();
+</script>
 </body>
 </html>
