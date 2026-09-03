@@ -58,16 +58,27 @@
 </button>
 </header>
 <div aria-hidden="true" class="mobile-menu">
-<a href="#houses">Houses</a>
-<a href="#amenities">Amenities</a>
-<a href="#gallery">Gallery</a>
-<a href="#pricing">Prices</a>
-<a href="#around">Nearby</a>
-<a href="#events">Events</a>
-<a href="#location">Location</a><a href="#rules">House Rules</a>
+<p class="mobile-menu-label">EXPLORE WOODRA</p>
+<nav aria-label="Mobile navigation" class="mobile-menu-primary">
+<a href="#houses"><span>01</span>Houses</a>
+<a href="#amenities"><span>02</span>Amenities</a>
+<a href="#gallery"><span>03</span>Gallery</a>
+<a href="#pricing"><span>04</span>Prices</a>
+<a href="#around"><span>05</span>Nearby</a>
+<a href="#events"><span>06</span>Events</a>
+<a href="#location"><span>07</span>Location</a>
+<a href="#rules"><span>08</span>House rules</a>
+</nav>
+<div class="mobile-menu-socials">
 <a href="https://www.instagram.com/woodra.aframe/" rel="noopener" target="_blank">Instagram ↗</a>
 <a href="https://www.facebook.com/share/19hZjLLN1f/?mibextid=wwXIfr" rel="noopener" target="_blank">Facebook ↗</a>
-<div class="mobile-contact-mini"><a href="tel:+359898714007">+359 898 714 007</a><a href="mailto:reservations@woodra-aframe.com">reservations@woodra-aframe.com</a><span><a class="" href="index.html">BG</a> / <a aria-current="page" class="active" href="en.html">EN</a></span></div><a href="#booking">Book now</a>
+</div>
+<div class="mobile-contact-mini">
+<a href="tel:+359898714007">+359 898 714 007</a>
+<a href="mailto:reservations@woodra-aframe.com">reservations@woodra-aframe.com</a>
+<span><a href="index.html">BG</a> / <a aria-current="page" class="active" href="en.html">EN</a></span>
+</div>
+<a class="mobile-menu-book" href="#booking">Check available dates <span>→</span></a>
 </div>
 <div aria-label="Section navigation" class="floating-nav">
 <button aria-label="Previous section" class="floating-arrow" id="section-prev" type="button">↑</button>
@@ -87,10 +98,10 @@
 <section aria-label="WOODRA A-FRAME" class="hero" id="hero">
 <div aria-hidden="true" class="hero-slideshow">
 <picture class="hero-slide active"><img alt="" fetchpriority="high" src="woodra-hero-01.webp"/></picture>
-<picture class="hero-slide"><img alt="" src="woodra-hero-02.webp"/></picture>
+<picture class="hero-slide"><img alt="" src="woodra-gallery-night-dining.webp"/></picture>
 <picture class="hero-slide"><img alt="" src="woodra-hero-03.webp"/></picture>
-<picture class="hero-slide"><img alt="" src="woodra-hero-04.webp"/></picture>
-<picture class="hero-slide"><img alt="" src="woodra-hero-05.webp"/></picture>
+<picture class="hero-slide"><img alt="" src="woodra-gallery-terrace-seating.webp"/></picture>
+<picture class="hero-slide"><img alt="" src="woodra-gallery-day-patio.webp"/></picture>
 <picture class="hero-slide"><img alt="" src="woodra-hero-06.webp"/></picture>
 </div>
 <div aria-hidden="true" class="hero-slide-dots"><button class="active" type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button></div>
@@ -227,7 +238,7 @@
 </div>
 </article>
 <article class="amenity-card reveal">
-<img alt="Terrace relaxation area" loading="lazy" src="woodra-terrace-client.jpg"/>
+<img alt="Terrace relaxation area overlooking the pool" loading="lazy" src="woodra-terrace-relax.webp"/>
 <div class="amenity-content">
 <span>02</span>
 <h3>Terrace &amp; relaxation</h3>
@@ -258,21 +269,20 @@
 <p>The river can be heard from the terrace, a natural soundtrack for the evenings.</p>
 </div>
 </article>
-<article class="amenity-card reveal">
-<img alt="Достъп и паркинг при WOODRA" loading="lazy" src="woodra-parking.webp"/>
-<div class="amenity-content">
-<span>06</span>
-<h3>Parking</h3>
-<p>Drive right up to the property, with parking for 4 cars.</p>
-</div>
-</article>
 </div>
 <article class="panorama-feature reveal">
 <img alt="Panoramic terrace with a view of Kom Peak" loading="lazy" src="woodra-terrace-wide.webp"/>
 <div class="panorama-overlay"></div>
 <div class="panorama-copy"><span>THE VIEW</span><h3>Panoramic terrace<br/>with a view of <em>Kom Peak.</em></h3></div>
 </article>
-<div class="breakfast-card breakfast-card-photo reveal"><div class="breakfast-photo"><img alt="Traditional breakfast at WOODRA with a mountain view" loading="lazy" src="woodra-breakfast.webp"/></div><div class="breakfast-body"><div class="breakfast-card-head"><span class="breakfast-icon">☕</span><div><span class="breakfast-eyebrow">ON REQUEST</span><strong>Traditional Bulgarian breakfast</strong><p>A homemade start to the day with a mountain view.</p></div><div class="breakfast-price"><strong>12 €</strong><span>per person</span></div></div><div class="breakfast-options"><div><span>01</span><p>Mekitsi with homemade jam and cheese</p></div><div><span>02</span><p>Homemade banitsa with cheese</p></div><div><span>03</span><p>French toast with homemade jam and cheese</p></div></div><a href="#booking">Add to your stay →</a></div></div>
+<div class="breakfast-card breakfast-card-photo reveal">
+<div aria-label="Breakfast photos" class="breakfast-photo" data-breakfast-slider>
+<figure class="breakfast-slide active"><img alt="Mekitsi with homemade jam and cheese" loading="lazy" src="woodra-breakfast-table.webp"/><figcaption>Homemade breakfast</figcaption></figure>
+<figure class="breakfast-slide"><img alt="Breakfast and coffee on the panoramic terrace" loading="lazy" src="woodra-breakfast-terrace.webp"/><figcaption>Morning on the terrace</figcaption></figure>
+<div class="breakfast-photo-controls"><button aria-label="Show the first photo" class="active" type="button"></button><button aria-label="Show the second photo" type="button"></button></div>
+</div>
+<div class="breakfast-body"><div class="breakfast-card-head"><span class="breakfast-icon">☕</span><div><span class="breakfast-eyebrow">ON REQUEST</span><strong>Traditional Bulgarian breakfast</strong><p>A homemade start to the day with a mountain view.</p></div><div class="breakfast-price"><strong>12 €</strong><span>per person</span></div></div><div class="breakfast-options"><div><span>01</span><p>Mekitsi with homemade jam and cheese</p></div><div><span>02</span><p>Homemade banitsa with cheese</p></div><div><span>03</span><p>French toast with homemade jam and cheese</p></div></div><a href="#booking">Add to your stay →</a></div>
+</div>
 </section>
 <section class="interior section">
 <div class="interior-grid">
@@ -288,9 +298,9 @@
 <button aria-label="Previous image" class="interior-nav prev" type="button">←</button>
 <div class="interior-slider" id="interior-slider">
 <div class="interior-slide active"><img alt="Bedroom at WOODRA" loading="lazy" src="woodra-interior-bed1.webp"/></div>
-<div class="interior-slide"><img alt="Bedroom 3 at WOODRA" loading="lazy" src="woodra-bedroom-3.png"/></div>
-<div class="interior-slide"><img alt="Living area with sofa" loading="lazy" src="woodra-living-room-sofa.jpg"/></div>
-<div class="interior-slide"><img alt="Interior detail" loading="lazy" src="woodra-living-detail.jpg"/></div>
+<div class="interior-slide"><img alt="Bedroom 3 at WOODRA" loading="lazy" src="woodra-bedroom-3.webp"/></div>
+<div class="interior-slide"><img alt="Living area with sofa" loading="lazy" src="woodra-living-room-sofa.webp"/></div>
+<div class="interior-slide"><img alt="Living area from above" loading="lazy" src="woodra-gallery-living-overview.webp"/></div>
 <div class="interior-slide"><img alt="Second bedroom at WOODRA" loading="lazy" src="woodra-interior-bed2.webp"/></div>
 <div class="interior-slide"><img alt="Bathroom with wood details" loading="lazy" src="woodra-interior-bath1.webp"/></div>
 <div class="interior-slide"><img alt="Bathroom with stone sink" loading="lazy" src="woodra-interior-bath2.webp"/></div>
@@ -309,24 +319,22 @@
 <p class="section-kicker">GALLERY</p>
 <h2>Explore WOODRA<br/><em>by experience.</em></h2>
 </div>
-<p>We grouped the photos into separate slideshows – outside, inside and around the houses.</p>
+<p>Four slideshows with distinct images – architecture, rooms, terraces, kitchen and bathrooms.</p>
 </div>
 
 <div class="showcase-block reveal" data-slider>
   <div class="showcase-head">
     <div>
-      <span class="showcase-kicker">01 · OUTSIDE</span>
-      <h3>Exterior.</h3>
+      <span class="showcase-kicker">01 · OUTSIDE &amp; EVENING</span>
+      <h3>Light and architecture.</h3>
     </div>
     <div class="showcase-nav"><button type="button" class="showcase-arrow prev" aria-label="Previous image">←</button><button type="button" class="showcase-arrow next" aria-label="Next image">→</button></div>
   </div>
   <div class="showcase-viewport"><div class="showcase-track">
-    <button type="button" class="showcase-slide active" data-lightbox="woodra-hero-01.webp"><img src="woodra-hero-01.webp" alt="The two houses by day" loading="lazy"/><span>WOODRA outside</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-houses-both.webp"><img src="woodra-houses-both.webp" alt="The two A-frame houses" loading="lazy"/><span>The two houses</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-house-one.webp"><img src="woodra-house-one.webp" alt="Facade and patio" loading="lazy"/><span>Facade & patio</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-pool.webp"><img src="woodra-pool.webp" alt="Pool in front of the houses" loading="lazy"/><span>Pool front</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-hero-02.webp"><img src="woodra-hero-02.webp" alt="WOODRA at night" loading="lazy"/><span>Evening mood</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-exterior-night2.webp"><img src="woodra-exterior-night2.webp" alt="Pool at night" loading="lazy"/><span>Pool at night</span></button>
+    <button type="button" class="showcase-slide active" data-lightbox="woodra-gallery-night-entrance.webp"><img src="woodra-gallery-night-entrance.webp" alt="The houses lit at night" loading="lazy"/><span>Evening lights</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-night-balcony.webp"><img src="woodra-gallery-night-balcony.webp" alt="The balcony and facade at night" loading="lazy"/><span>The balcony at night</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-night-facade.webp"><img src="woodra-gallery-night-facade.webp" alt="The facade up close at night" loading="lazy"/><span>The facade at night</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-night-glass-facade.webp"><img src="woodra-gallery-night-glass-facade.webp" alt="The glass facade at night" loading="lazy"/><span>The glass facade</span></button>
   </div></div>
   <div class="showcase-dots"></div>
 </div>
@@ -334,21 +342,16 @@
 <div class="showcase-block reveal" data-slider>
   <div class="showcase-head">
     <div>
-      <span class="showcase-kicker">02 · INSIDE</span>
-      <h3>Inside.</h3>
+      <span class="showcase-kicker">02 · ROOMS &amp; SPACES</span>
+      <h3>From the entrance to the bedrooms.</h3>
     </div>
     <div class="showcase-nav"><button type="button" class="showcase-arrow prev" aria-label="Previous image">←</button><button type="button" class="showcase-arrow next" aria-label="Next image">→</button></div>
   </div>
   <div class="showcase-viewport"><div class="showcase-track">
-    <button type="button" class="showcase-slide active" data-lightbox="woodra-interior-main.webp"><img src="woodra-interior-main.webp" alt="Bedroom under the A-frame roof" loading="lazy"/><span>Bedroom under the roof</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-bedroom-3.png"><img src="woodra-bedroom-3.png" alt="Bedroom 3" loading="lazy"/><span>Bedroom 3</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-living-room-sofa.jpg"><img src="woodra-living-room-sofa.jpg" alt="Living area" loading="lazy"/><span>Living area</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-living-detail.jpg"><img src="woodra-living-detail.jpg" alt="Interior detail" loading="lazy"/><span>Interior detail</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-interior-bed2.webp"><img src="woodra-interior-bed2.webp" alt="Modern bedroom" loading="lazy"/><span>Modern bedroom</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-interior-bath1.webp"><img src="woodra-interior-bath1.webp" alt="Bathroom and shower" loading="lazy"/><span>Bathroom & shower</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-interior-bath2.webp"><img src="woodra-interior-bath2.webp" alt="Stone sink bathroom" loading="lazy"/><span>Stone sink</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-interior-dining.webp"><img src="woodra-interior-dining.webp" alt="Dining area" loading="lazy"/><span>Dining area</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-interior-kitchen.webp"><img src="woodra-interior-kitchen.webp" alt="Kitchen" loading="lazy"/><span>Kitchen</span></button>
+    <button type="button" class="showcase-slide active" data-lightbox="woodra-gallery-entry.webp"><img src="woodra-gallery-entry.webp" alt="The house entrance" loading="lazy"/><span>Welcome inside</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-hallway.webp"><img src="woodra-gallery-hallway.webp" alt="Hallway with the front door" loading="lazy"/><span>The entrance hall</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-bedroom-wide-1.webp"><img src="woodra-gallery-bedroom-wide-1.webp" alt="Bedroom with wood panelling" loading="lazy"/><span>Warm wood</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-bedroom-wide-2.webp"><img src="woodra-gallery-bedroom-wide-2.webp" alt="A second spacious bedroom" loading="lazy"/><span>A quiet bedroom</span></button>
   </div></div>
   <div class="showcase-dots"></div>
 </div>
@@ -356,18 +359,31 @@
 <div class="showcase-block reveal" data-slider>
   <div class="showcase-head">
     <div>
-      <span class="showcase-kicker">03 · GARDEN & TERRACES</span>
-      <h3>Garden & terraces.</h3>
+      <span class="showcase-kicker">03 · TERRACES &amp; VIEWS</span>
+      <h3>Outside, with all the comforts.</h3>
     </div>
     <div class="showcase-nav"><button type="button" class="showcase-arrow prev" aria-label="Previous image">←</button><button type="button" class="showcase-arrow next" aria-label="Next image">→</button></div>
   </div>
   <div class="showcase-viewport"><div class="showcase-track">
-    <button type="button" class="showcase-slide active" data-lightbox="woodra-hero-03.webp"><img src="woodra-hero-03.webp" alt="The garden at WOODRA" loading="lazy"/><span>The garden</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-terrace-client.jpg"><img src="woodra-terrace-client.jpg" alt="Terrace with a view" loading="lazy"/><span>Terrace view</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-terrace-2.webp"><img src="woodra-terrace-2.webp" alt="Outdoor lounge" loading="lazy"/><span>Outdoor lounge</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-pool-top.webp"><img src="woodra-pool-top.webp" alt="View of the pool" loading="lazy"/><span>Poolside</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-kids.webp"><img src="woodra-kids.webp" alt="Kids play area" loading="lazy"/><span>Play area</span></button>
-    <button type="button" class="showcase-slide" data-lightbox="woodra-terrace-3.webp"><img src="woodra-terrace-3.webp" alt="Terrace detail" loading="lazy"/><span>Terrace detail</span></button>
+    <button type="button" class="showcase-slide active" data-lightbox="woodra-gallery-bedroom-pool-view.webp"><img src="woodra-gallery-bedroom-pool-view.webp" alt="Bedroom with views over the pool and garden" loading="lazy"/><span>Wake up to the view</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-night-terrace.webp"><img src="woodra-gallery-night-terrace.webp" alt="The terrace lounge at night" loading="lazy"/><span>A quiet evening corner</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-dining-detail.webp"><img src="woodra-gallery-dining-detail.webp" alt="Flowers and details by the terrace" loading="lazy"/><span>The little touches</span></button>
+  </div></div>
+  <div class="showcase-dots"></div>
+</div>
+
+<div class="showcase-block reveal" data-slider>
+  <div class="showcase-head">
+    <div>
+      <span class="showcase-kicker">04 · KITCHEN &amp; BATHROOM</span>
+      <h3>Natural materials.</h3>
+    </div>
+    <div class="showcase-nav"><button type="button" class="showcase-arrow prev" aria-label="Previous image">←</button><button type="button" class="showcase-arrow next" aria-label="Next image">→</button></div>
+  </div>
+  <div class="showcase-viewport"><div class="showcase-track">
+    <button type="button" class="showcase-slide active" data-lightbox="woodra-gallery-kitchen-wide.webp"><img src="woodra-gallery-kitchen-wide.webp" alt="Full view of the kitchen" loading="lazy"/><span>Fully equipped kitchen</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-bath-wide.webp"><img src="woodra-gallery-bath-wide.webp" alt="Bathroom with a stone sink" loading="lazy"/><span>Stone and wood</span></button>
+    <button type="button" class="showcase-slide" data-lightbox="woodra-gallery-bath-detail.webp"><img src="woodra-gallery-bath-detail.webp" alt="Close-up of the stone sink" loading="lazy"/><span>Natural materials</span></button>
   </div></div>
   <div class="showcase-dots"></div>
 </div>

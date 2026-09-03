@@ -31,19 +31,30 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
   const menuToggle = $('.menu-toggle');
   const mobileMenu = $('.mobile-menu');
+  const menuLabels = document.documentElement.lang === 'en'
+    ? { open: 'Open menu', close: 'Close menu' }
+    : { open: 'Отвори меню', close: 'Затвори меню' };
   const closeMenu = () => {
     mobileMenu?.classList.remove('open');
     document.body.classList.remove('menu-open');
     menuToggle?.setAttribute('aria-expanded', 'false');
+    menuToggle?.setAttribute('aria-label', menuLabels.open);
     mobileMenu?.setAttribute('aria-hidden', 'true');
   };
   menuToggle?.addEventListener('click', () => {
     const isOpen = mobileMenu.classList.toggle('open');
     document.body.classList.toggle('menu-open', isOpen);
     menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? menuLabels.close : menuLabels.open);
     mobileMenu.setAttribute('aria-hidden', String(!isOpen));
   });
   $$('.mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+      closeMenu();
+      menuToggle?.focus();
+    }
+  });
 
   const houseData = {
     one: {
@@ -114,6 +125,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
   const MIN_NIGHTS = Number(config.minNights || 1);
   const SINGLE_HOUSE_MAX = Number(config.singleHouseMaxGuests || 8);
   const MONTHS_AHEAD = Number(config.availabilityMonthsAhead || 18);
+  const BLOCKED_RANGES = Array.isArray(config.blockedRanges) ? config.blockedRanges : [];
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -134,6 +146,21 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
   };
   const addMonths = (date, months) => new Date(date.getFullYear(), date.getMonth() + months, 1);
   const startOfMonth = (date) => new Date(date.getFullYear(), date.getMonth(), 1);
+  const configuredBusyNights = () => {
+    const nights = new Set();
+    BLOCKED_RANGES.forEach(({ from, to }) => {
+      const start = parseISO(from);
+      const end = parseISO(to);
+      if (!start || !end || end < start) return;
+      for (let day = new Date(start); day <= end; day = addDays(day, 1)) nights.add(isoDate(day));
+    });
+    return nights;
+  };
+  const mergeConfiguredBusyNights = (busyDates = []) => {
+    const merged = new Set(busyDates);
+    configuredBusyNights().forEach(date => merged.add(date));
+    return merged;
+  };
   const getNights = (start, end) => {
     const s = typeof start === 'string' ? parseISO(start) : start;
     const e = typeof end === 'string' ? parseISO(end) : end;
@@ -420,8 +447,8 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     const endpoint = String(config.bookingEndpoint || '').trim();
     if (!endpoint) {
       state.liveAvailability = false;
-      state.house1Busy = new Set();
-      state.house2Busy = new Set();
+      state.house1Busy = mergeConfiguredBusyNights();
+      state.house2Busy = mergeConfiguredBusyNights();
       renderCalendar();
       updateCalendarStatus('Изберете начална дата. Онлайн резервациите ще бъдат активирани скоро.');
       return;
@@ -434,8 +461,8 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
       const url = `${endpoint}${separator}action=availability&from=${isoDate(from)}&to=${isoDate(to)}`;
       const data = await jsonp(url);
       if (!data?.ok) throw new Error(data?.message || 'Availability error');
-      state.house1Busy = new Set(data.house1Busy || []);
-      state.house2Busy = new Set(data.house2Busy || []);
+      state.house1Busy = mergeConfiguredBusyNights(data.house1Busy || []);
+      state.house2Busy = mergeConfiguredBusyNights(data.house2Busy || []);
       state.liveAvailability = true;
       renderCalendar();
 
@@ -786,6 +813,36 @@ function initWoodraInteriorSlider() {
   show(0); restart();
 }
 
+function initWoodraBreakfastSlider() {
+  document.querySelectorAll('[data-breakfast-slider]').forEach((slider) => {
+    const slides = Array.from(slider.querySelectorAll('.breakfast-slide'));
+    const dots = Array.from(slider.querySelectorAll('.breakfast-photo-controls button'));
+    if (slides.length < 2) return;
+    let current = 0;
+    let timer;
+    const show = (index) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+    };
+    const restart = () => {
+      clearInterval(timer);
+      timer = setInterval(() => show(current + 1), 5600);
+    };
+    dots.forEach((dot, index) => dot.addEventListener('click', () => {
+      show(index);
+      restart();
+    }));
+    slider.addEventListener('pointerenter', () => clearInterval(timer));
+    slider.addEventListener('pointerleave', restart);
+    slider.addEventListener('focusin', () => clearInterval(timer));
+    slider.addEventListener('focusout', restart);
+    show(0);
+    restart();
+  });
+}
+
 initWoodraHeroSlideshow();
 initWoodraShowcaseSliders();
 initWoodraInteriorSlider();
+initWoodraBreakfastSlider();
