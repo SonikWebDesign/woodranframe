@@ -173,6 +173,10 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     return new Intl.DateTimeFormat('bg-BG', { day: 'numeric', month: 'short' }).format(date);
   };
   const bgMonth = (date) => new Intl.DateTimeFormat('bg-BG', { month: 'long', year: 'numeric' }).format(date);
+  const configuredFirstBookableDate = parseISO(config.firstBookableDate);
+  const firstBookableDate = configuredFirstBookableDate && configuredFirstBookableDate > today
+    ? configuredFirstBookableDate
+    : today;
 
   const arrival = $('#arrival');
   const departure = $('#departure');
@@ -192,7 +196,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
   const bookingReference = $('#booking-reference');
 
   const state = {
-    viewMonth: startOfMonth(today),
+    viewMonth: startOfMonth(firstBookableDate),
     selectedStart: null,
     selectedEnd: null,
     houseMode: 'one',
@@ -204,8 +208,8 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     submitTimer: null
   };
 
-  [arrival, quickArrival].forEach(el => { if (el) el.min = isoDate(today); });
-  [departure, quickDeparture].forEach(el => { if (el) el.min = isoDate(addDays(today, MIN_NIGHTS)); });
+  [arrival, quickArrival].forEach(el => { if (el) el.min = isoDate(firstBookableDate); });
+  [departure, quickDeparture].forEach(el => { if (el) el.min = isoDate(addDays(firstBookableDate, MIN_NIGHTS)); });
 
   function setLoading(isLoading) {
     state.loading = isLoading;
@@ -277,7 +281,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
   }
 
   function selectCalendarDate(date) {
-    if (date < today) return;
+    if (date < firstBookableDate) return;
 
     if (!state.selectedStart || state.selectedEnd) {
       if (!modeNightAvailable(date)) {
@@ -352,7 +356,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
       button.dataset.date = key;
       button.innerHTML = `<span class="day-number">${day}</span><i class="day-state"></i>`;
 
-      const past = date < today;
+      const past = date < firstBookableDate;
       const freeCount = freeHouseCount(date);
       const modeAvailable = modeNightAvailable(date);
       let validCheckout = false;
@@ -401,7 +405,7 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
     calendarRoot.appendChild(renderMonth(state.viewMonth));
     calendarRoot.appendChild(renderMonth(second));
     if (calendarRangeTitle) calendarRangeTitle.textContent = `${bgMonth(state.viewMonth)} · ${bgMonth(second)}`;
-    $('#calendar-prev')?.toggleAttribute('disabled', state.viewMonth <= startOfMonth(today));
+    $('#calendar-prev')?.toggleAttribute('disabled', state.viewMonth <= startOfMonth(firstBookableDate));
   }
 
   function availabilityWindow() {
@@ -510,14 +514,14 @@ window.addEventListener('scroll', handleHeaderState, { passive: true });
 
   $('#calendar-prev')?.addEventListener('click', () => {
     const previous = addMonths(state.viewMonth, -1);
-    if (previous < startOfMonth(today)) return;
+    if (previous < startOfMonth(firstBookableDate)) return;
     state.viewMonth = previous;
     renderCalendar();
     loadAvailability();
   });
 
   $('#calendar-next')?.addEventListener('click', () => {
-    const maxMonth = addMonths(startOfMonth(today), MONTHS_AHEAD);
+    const maxMonth = addMonths(startOfMonth(firstBookableDate), MONTHS_AHEAD);
     const next = addMonths(state.viewMonth, 1);
     if (next > maxMonth) {
       updateCalendarStatus(`Календарът показва до ${MONTHS_AHEAD} месеца напред.`);
@@ -735,9 +739,64 @@ window.addEventListener('resize', updateFloatingNav);
 window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches && document.documentElement.classList.add("reduced-motion");
 
 // v18 stable visual interactions
+function addWoodraSwipe(element, onPrevious, onNext) {
+  if (!element) return;
+  let startX = 0;
+  let startY = 0;
+  let pointerId = null;
+  let suppressClick = false;
+
+  element.classList.add('woodra-swipe-area');
+  element.addEventListener('dragstart', (event) => event.preventDefault());
+  element.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startY = event.clientY;
+    element.classList.add('is-dragging');
+    element.setPointerCapture?.(event.pointerId);
+  });
+  element.addEventListener('pointerup', (event) => {
+    if (pointerId !== event.pointerId) return;
+    const distanceX = event.clientX - startX;
+    const distanceY = event.clientY - startY;
+    const isHorizontalSwipe = Math.abs(distanceX) >= 42 && Math.abs(distanceX) > Math.abs(distanceY) * 1.15;
+    element.classList.remove('is-dragging');
+    pointerId = null;
+    if (!isHorizontalSwipe) return;
+    suppressClick = true;
+    distanceX < 0 ? onNext() : onPrevious();
+    window.setTimeout(() => { suppressClick = false; }, 0);
+  });
+  element.addEventListener('pointercancel', () => {
+    element.classList.remove('is-dragging');
+    pointerId = null;
+  });
+  element.addEventListener('click', (event) => {
+    if (!suppressClick) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }, true);
+}
+
+function makeWoodraArrow(label, direction) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = `woodra-overlay-arrow ${direction}`;
+  button.setAttribute('aria-label', label);
+  button.textContent = direction === 'prev' ? '←' : '→';
+  return button;
+}
+
+const woodraSliderLabels = document.documentElement.lang === 'en'
+  ? { previous: 'Previous image', next: 'Next image', slide: 'Slide' }
+  : { previous: 'Предишна снимка', next: 'Следваща снимка', slide: 'Слайд' };
+
 function initWoodraHeroSlideshow() {
   const slides = Array.from(document.querySelectorAll('.hero-slide'));
   const dots = Array.from(document.querySelectorAll('.hero-slide-dots button'));
+  const hero = document.querySelector('.hero');
+  const swipeArea = document.querySelector('.hero-slideshow');
   if (!slides.length) return;
   let current = 0;
   let timer;
@@ -751,6 +810,21 @@ function initWoodraHeroSlideshow() {
     timer = setInterval(() => show(current + 1), 5200);
   };
   dots.forEach((dot, idx) => dot.addEventListener('click', () => { show(idx); restart(); }));
+  if (hero && !hero.querySelector('.hero-swipe-nav')) {
+    const nav = document.createElement('div');
+    nav.className = 'hero-swipe-nav';
+    const prev = makeWoodraArrow(woodraSliderLabels.previous, 'prev');
+    const next = makeWoodraArrow(woodraSliderLabels.next, 'next');
+    prev.addEventListener('click', () => { show(current - 1); restart(); });
+    next.addEventListener('click', () => { show(current + 1); restart(); });
+    nav.append(prev, next);
+    hero.appendChild(nav);
+  }
+  addWoodraSwipe(
+    swipeArea,
+    () => { show(current - 1); restart(); },
+    () => { show(current + 1); restart(); }
+  );
   show(0);
   restart();
 }
@@ -762,13 +836,14 @@ function initWoodraShowcaseSliders() {
     const prev = slider.querySelector('.showcase-arrow.prev');
     const next = slider.querySelector('.showcase-arrow.next');
     const dotsWrap = slider.querySelector('.showcase-dots');
+    const viewport = slider.querySelector('.showcase-viewport');
     if (!track || !slides.length || !dotsWrap) return;
     let index = 0;
     dotsWrap.innerHTML = '';
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.type = 'button';
-      dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      dot.setAttribute('aria-label', `${woodraSliderLabels.slide} ${i + 1}`);
       dot.addEventListener('click', () => update(i));
       dotsWrap.appendChild(dot);
     });
@@ -781,6 +856,17 @@ function initWoodraShowcaseSliders() {
     }
     prev?.addEventListener('click', () => update(index - 1));
     next?.addEventListener('click', () => update(index + 1));
+    if (viewport && !viewport.querySelector('.showcase-overlay-nav')) {
+      const overlayNav = document.createElement('div');
+      overlayNav.className = 'showcase-overlay-nav';
+      const overlayPrev = makeWoodraArrow(woodraSliderLabels.previous, 'prev');
+      const overlayNext = makeWoodraArrow(woodraSliderLabels.next, 'next');
+      overlayPrev.addEventListener('click', () => update(index - 1));
+      overlayNext.addEventListener('click', () => update(index + 1));
+      overlayNav.append(overlayPrev, overlayNext);
+      viewport.appendChild(overlayNav);
+    }
+    addWoodraSwipe(viewport, () => update(index - 1), () => update(index + 1));
     update(0);
   });
 }
@@ -797,7 +883,7 @@ function initWoodraInteriorSlider() {
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
     dot.type = 'button';
-    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+    dot.setAttribute('aria-label', `${woodraSliderLabels.slide} ${i + 1}`);
     dot.addEventListener('click', () => { show(i); restart(); });
     dotsWrap.appendChild(dot);
   });
@@ -810,6 +896,11 @@ function initWoodraInteriorSlider() {
   function restart() { clearInterval(timer); timer = setInterval(() => show(current + 1), 7600); }
   prev?.addEventListener('click', () => { show(current - 1); restart(); });
   next?.addEventListener('click', () => { show(current + 1); restart(); });
+  addWoodraSwipe(
+    document.querySelector('#interior-slider'),
+    () => { show(current - 1); restart(); },
+    () => { show(current + 1); restart(); }
+  );
   show(0); restart();
 }
 
@@ -833,6 +924,21 @@ function initWoodraBreakfastSlider() {
       show(index);
       restart();
     }));
+    if (!slider.querySelector('.breakfast-swipe-nav')) {
+      const nav = document.createElement('div');
+      nav.className = 'breakfast-swipe-nav';
+      const prev = makeWoodraArrow(woodraSliderLabels.previous, 'prev');
+      const next = makeWoodraArrow(woodraSliderLabels.next, 'next');
+      prev.addEventListener('click', () => { show(current - 1); restart(); });
+      next.addEventListener('click', () => { show(current + 1); restart(); });
+      nav.append(prev, next);
+      slider.appendChild(nav);
+    }
+    addWoodraSwipe(
+      slider,
+      () => { show(current - 1); restart(); },
+      () => { show(current + 1); restart(); }
+    );
     slider.addEventListener('pointerenter', () => clearInterval(timer));
     slider.addEventListener('pointerleave', restart);
     slider.addEventListener('focusin', () => clearInterval(timer));
