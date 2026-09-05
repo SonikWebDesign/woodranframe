@@ -948,7 +948,52 @@ function initWoodraBreakfastSlider() {
   });
 }
 
+function initWoodraPrivateVisitCounter() {
+  const config = window.WOODRA_CONFIG || {};
+  const endpoint = String(config.bookingEndpoint || '').trim();
+  const hostname = String(window.location.hostname || '').toLowerCase();
+  if (!endpoint || !/^(www\.)?woodra-aframe\.com$/.test(hostname)) return;
+
+  const userAgent = String(navigator.userAgent || '');
+  if (/bot|crawler|spider|crawling|headless/i.test(userAgent) || navigator.webdriver) return;
+
+  const isTablet = /ipad|tablet/i.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isMobile = !isTablet && (/iphone|ipod|android.*mobile|windows phone/i.test(userAgent) || window.innerWidth <= 720);
+  const device = isTablet ? 'tablet' : (isMobile ? 'mobile' : 'desktop');
+  const page = document.documentElement.lang === 'en' ? '/en.html' : '/';
+  let referrer = 'Direct';
+  try {
+    const referrerHost = document.referrer ? new URL(document.referrer).hostname : '';
+    if (referrerHost) referrer = referrerHost === hostname ? 'Internal' : referrerHost;
+  } catch (ignore) {}
+
+  const randomPart = window.crypto?.randomUUID
+    ? window.crypto.randomUUID().replace(/-/g, '')
+    : Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+  const hitId = `${Date.now()}_${randomPart}`;
+  const callback = `woodraVisit_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  const script = document.createElement('script');
+  const cleanup = () => {
+    try { delete window[callback]; } catch (ignore) { window[callback] = undefined; }
+    script.remove();
+  };
+
+  window[callback] = () => cleanup();
+  script.async = true;
+  script.onerror = cleanup;
+  const separator = endpoint.includes('?') ? '&' : '?';
+  script.src = `${endpoint}${separator}action=visit` +
+    `&hit=${encodeURIComponent(hitId)}` +
+    `&page=${encodeURIComponent(page)}` +
+    `&device=${encodeURIComponent(device)}` +
+    `&lang=${encodeURIComponent(document.documentElement.lang || '-')}` +
+    `&referrer=${encodeURIComponent(referrer)}` +
+    `&prefix=${encodeURIComponent(callback)}`;
+  document.head.appendChild(script);
+}
+
 initWoodraHeroSlideshow();
 initWoodraShowcaseSliders();
 initWoodraInteriorSlider();
 initWoodraBreakfastSlider();
+initWoodraPrivateVisitCounter();
