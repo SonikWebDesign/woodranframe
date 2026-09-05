@@ -963,8 +963,26 @@ function initWoodraPrivateVisitCounter() {
   const page = document.documentElement.lang === 'en' ? '/en.html' : '/';
   let referrer = 'Direct';
   try {
-    const referrerHost = document.referrer ? new URL(document.referrer).hostname : '';
-    if (referrerHost) referrer = referrerHost === hostname ? 'Internal' : referrerHost;
+    const pageParams = new URLSearchParams(window.location.search);
+    const utmSource = String(pageParams.get('utm_source') || '').toLowerCase();
+    if (utmSource === 'instagram' || utmSource === 'ig') {
+      referrer = 'Instagram';
+    } else if (utmSource === 'facebook' || utmSource === 'fb') {
+      referrer = 'Facebook';
+    } else if (pageParams.has('fbclid')) {
+      referrer = 'Facebook';
+    } else if (pageParams.has('igshid') || pageParams.has('igsh')) {
+      referrer = 'Instagram';
+    } else {
+      const referrerHost = document.referrer ? new URL(document.referrer).hostname.toLowerCase() : '';
+      if (referrerHost.includes('instagram')) {
+        referrer = 'Instagram';
+      } else if (referrerHost.includes('facebook')) {
+        referrer = 'Facebook';
+      } else if (referrerHost) {
+        referrer = referrerHost === hostname ? 'Internal' : referrerHost;
+      }
+    }
   } catch (ignore) {}
 
   const randomPart = window.crypto?.randomUUID
